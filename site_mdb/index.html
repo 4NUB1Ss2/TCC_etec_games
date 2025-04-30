@@ -74,7 +74,7 @@
         <a
           data-mdb-ripple-init
           class="btn btn-dark px-3"
-          href="https://github.com/mdbootstrap/mdb-ui-kit"
+          href="https://github.com/4NUB1Ss2/TCC_etec_games  "
           role="button"
           ><i class="fab fa-github"></i
         ></a>
@@ -143,7 +143,7 @@
                   role="tabpanel"
                   aria-labelledby="mdb-tab-login"
                 >
-                  <form>
+                  <form action="./php/cadcli.php">
                     <div class="text-center mb-3">
                       <p>Sign in with:</p>
                       <button type="button" class="btn btn-primary btn-floating mx-1" data-mdb-ripple-init>
@@ -203,9 +203,7 @@
                     <button type="submit" class="btn btn-primary btn-block mb-4" data-mdb-ripple-init>Sign in</button>
 
                     <!-- Register buttons -->
-                    <div class="text-center">
-                      <p class="mb-1">Not a member? <a href="#!">Register</a></p>
-                    </div>
+                    
                   </form>
                 </div>
                 <div
@@ -214,7 +212,7 @@
                   role="tabpanel"
                   aria-labelledby="mdb-tab-register"
                 >
-                  <form>
+                  <form action="./php/cadcli.php" method="post">
                     <div class="text-center mb-3">
                       <p>Sign up with:</p>
                       <button type="button" class="btn btn-primary btn-floating mx-1" data-mdb-ripple-init>
@@ -238,32 +236,26 @@
 
                     <!-- Name input -->
                     <div class="form-outline mb-4" data-mdb-input-init>
-                      <input type="text" id="registerName" class="form-control" />
+                      <input type="text" id="registerName" class="form-control" name="name" required/>
                       <label class="form-label" for="registerName">Name</label>
                     </div>
 
                     <!-- Username input -->
                     <div class="form-outline mb-4" data-mdb-input-init>
-                      <input type="text" id="registerUsername" class="form-control" />
+                      <input type="text" id="registerUsername" class="form-control" name="username" required/>
                       <label class="form-label" for="registerUsername">Username</label>
                     </div>
 
                     <!-- Email input -->
                     <div class="form-outline mb-4" data-mdb-input-init>
-                      <input type="email" id="registerEmail" class="form-control" />
+                      <input type="email" id="registerEmail" class="form-control" name="email" required/>
                       <label class="form-label" for="registerEmail">Email</label>
                     </div>
 
                     <!-- Password input -->
                     <div class="form-outline mb-4" data-mdb-input-init>
-                      <input type="password" id="registerPassword" class="form-control" />
+                      <input type="password" id="registerPassword" class="form-control" name="password" required/>
                       <label class="form-label" for="registerPassword">Password</label>
-                    </div>
-
-                    <!-- Repeat Password input -->
-                    <div class="form-outline mb-4" data-mdb-input-init>
-                      <input type="password" id="registerRepeatPassword" class="form-control" />
-                      <label class="form-label" for="registerRepeatPassword">Repeat password</label>
                     </div>
 
                     <!-- Checkbox -->
@@ -282,7 +274,7 @@
                     </div>
 
                     <!-- Submit button -->
-                    <button type="submit" class="btn btn-primary btn-block mb-1" data-mdb-ripple-init>Sign in</button>
+                    <button type="submit" class="btn btn-primary btn-block mb-1" data-mdb-ripple-init>Sign up</button>
                   </form>
                 </div>
               </div>
