@@ -1,7 +1,7 @@
 -- MySQL Administrator dump 1.4
 --
 -- ------------------------------------------------------
--- Server version	5.5.5-10.4.32-MariaDB
+-- Server version	5.5.5-10.4.17-MariaDB
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -33,7 +33,7 @@ CREATE TABLE `users` (
   `email` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
@@ -41,7 +41,7 @@ CREATE TABLE `users` (
 
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`,`name`,`username`,`email`,`password`) VALUES 
- (1,'Giovanni Rohrig','4NUB1Ss2','soprasalvarf@gmail.com','4nUB1S2701=');
+ (1,'Giovanni Rohrig','4NUB1Ss2','soprasalvarf@gmail.com','1234');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 
