@@ -38,12 +38,12 @@ if(mysqli_num_rows ($result) > 0 )
 {
 $_SESSION['login'] = $login;
 $_SESSION['senha'] = $senha;
-header('location:../logincheck.php');
+header('location:../index.php');
 }
 else{
   unset ($_SESSION['login']); //apaga o valor da variável
   unset ($_SESSION['senha']);
-  header('location:../index.html');
+  header('location:../mainPage.html');
 
   }
 ?>
