@@ -1,0 +1,71 @@
+.titulo {
+	width: 100%;
+	background-color: #4682B4;
+	overflow: auto;
+}
+
+.titulo a{
+	float:left;
+	padding:12px;
+	color:white;
+	font-size:18px;
+}
+
+.texto{
+	width: 40%;
+	padding: 10px;
+	margin: 5px 0 22px 0;
+	border: none;
+	background: #f1f1f1;
+	margin-left: 350px;
+}
+
+.foto{
+	padding: 10px;
+	margin: 5px 0 22px 0;
+	border: none;
+	margin-left: 350px;
+}
+
+.combo{
+	padding: 5px;
+	margin-left: 350px;
+}
+
+.botao{
+	background-color: #4682B4;
+	font-size: 12pt;
+	color: white;
+	padding: 10px 12px;
+	margin: 8px 0;
+	cursor: pointer;
+	width: 10%;
+	float: left;
+	margin-left: 300px;
+}
+
+.corpo {
+	padding:60px;
+	background-color: #DCDCDC;
+}
+
+.corpo label{
+	font-size: 18px;
+	margin-left: 350px;
+}
+
+.botao_pesquisa{
+    float: right;
+    margin-right: 10px;
+    height: 35px;
+    margin-top: 3px;
+}
+
+.titulo input {
+  padding: 6px;
+  margin-top: 5px;
+  margin-right: 10px;
+  font-size: 17px;
+  border: none;
+  float: right;
+}

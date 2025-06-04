@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8">
+	    <link rel="stylesheet" href="modelo.css">
+		<title>CADASTRO DE IMOBILIÁRIAS</title>
+	</head>
+	
+	<body>
+	   
+		
+	<div class="titulo">	
+	
+		<a href="imobiliaria.html"> Principal</a> 
+		
+		 <form action="editar.php" method="post">
+			<input type="text" placeholder="Nome da imobiliária" name="pesquisa" required>
+			<button class="botao_pesquisa" type="submit">Localizar Imobiliária </button>
+		</form>
+	</div>
+		
+		<div class="corpo">
+			<form action="cadastro.php" method="post">
+				<label><b>Nome da Imobiliária</b></label><br>
+				<input type="text" class="texto" name="nome" required><br>
+				
+				<label><b>Telefone</b></label><br>
+				<input type="text" class="texto" name="fone" required><br>
+				
+				<label><b>Contato</b></label><br>
+				<input type="text" class="texto" name="cont" required><br>
+				
+				
+				<button type="submit" class="botao">Salvar</button>
+			</form>
+			
+			
+			 <form action="listaimobiliaria.php" method="post">
+			    <button class="botao_pesquisa" type="submit">Listar Imobiliárias </button>
+		     </form>
+			
+			
+		</div>
+	</body>
+</html>
