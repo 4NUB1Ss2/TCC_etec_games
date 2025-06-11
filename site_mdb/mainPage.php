@@ -1,4 +1,8 @@
-<?php include_once("./php/card.php") ?>
+<?php include_once("./php/conexao.php"); 
+
+$sql = "SELECT * FROM games ORDER BY id DESC LIMIT 4";
+$query = mysqli_query($conn, $sql) or die ("Erro");
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -112,6 +116,20 @@
 <div class="container-lg">
   <h1>Ultimos Lançamentos</h1>
 <div class="row">
+<?php
+$result=mysqli_query($conn,$sql);
+
+while($tbl=mysqli_fetch_array($result))
+{
+	$cod = $tbl["id"];
+	$nome = "teste";
+	$tel = $tbl["description"];
+	$cont = $tbl["image"];
+	
+
+
+}
+?>
   <div class="col-sm-3">
     <div class="card">
   <div class="bg-image hover-overlay" data-mdb-ripple-init data-mdb-ripple-color="light">
@@ -121,57 +139,13 @@
     </a>
   </div>
   <div class="card-body">
-    <h5 class="card-title text-center">jogo 1</h5>
+    <h5 class="card-title text-center"><?php echo $nome?>jogo 1</h5>
     <p class="card-text">Uma breve descrição do jogo, contando a história ou as características do jogo</p>
     <a href="#!" class="btn btn-primary align-items-center" data-mdb-ripple-init>Baixar</a>
   </div>
   </div>  
   </div>
-  <div class="col-sm-3">
-    <div class="card">
-  <div class="bg-image hover-overlay" data-mdb-ripple-init data-mdb-ripple-color="light">
-    <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp" class="img-fluid"/>
-    <a href="#!">
-      <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-    </a>
-  </div>
-  <div class="card-body">
-    <h5 class="card-title text-center">jogo 1</h5>
-    <p class="card-text">Uma breve descrição do jogo, contando a história ou as características do jogo</p>
-    <a href="#!" class="btn btn-primary align-items-center" data-mdb-ripple-init>Baixar</a>
-  </div>
-  </div>  
-  </div>
-  <div class="col-sm-3">
-    <div class="card">
-  <div class="bg-image hover-overlay" data-mdb-ripple-init data-mdb-ripple-color="light">
-    <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp" class="img-fluid"/>
-    <a href="#!">
-      <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-    </a>
-  </div>
-  <div class="card-body">
-    <h5 class="card-title text-center">jogo 1</h5>
-    <p class="card-text">Uma breve descrição do jogo, contando a história ou as características do jogo</p>
-    <a href="#!" class="btn btn-primary align-items-center" data-mdb-ripple-init>Baixar</a>
-  </div>
-  </div>  
-  </div>
-  <div class="col-sm-3">
-    <div class="card">
-  <div class="bg-image hover-overlay" data-mdb-ripple-init data-mdb-ripple-color="light">
-    <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp" class="img-fluid"/>
-    <a href="#!">
-      <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-    </a>
-  </div>
-  <div class="card-body">
-    <h5 class="card-title text-center">jogo 1</h5>
-    <p class="card-text">Uma breve descrição do jogo, contando a história ou as características do jogo</p>
-    <a href="#!" class="btn btn-primary align-items-center" data-mdb-ripple-init>Baixar</a>
-  </div>
-  </div>  
-  </div>
+  
 </div>
 
 <br>
@@ -333,7 +307,7 @@
 
  
 
-    <footer class=" bg-dark text-center fixed-bottom" data-mdb-theme="dark">
+    <footer class=" bg-dark text-center bottom" data-mdb-theme="dark">
       <!-- Grid container -->
       <div class="container p-4 pb-0">
         <!-- Section: Social media -->
@@ -417,4 +391,4 @@
   </body>
 </html>
 
-<!-- salvamento-->>
+<!-- salvamento-->

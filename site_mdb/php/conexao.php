@@ -1,14 +1,15 @@
 <?php
 
-  $servername = "localhost";
-  $database = "etecgames";
-  $username = "root";
-  $password = "root";
+$servidor = "localhost";
+$senha = "root";
+$banco = "etecgames";
+$usuario = "root";
 
-  //criando conexão
-  $conn = new mysqli(	"$servername,$username, $password, $database");
+
+//criando conexão
+$conn = mysqli_connect($servidor,$usuario, $senha, $banco);
 
 if(!$conn){
-    die("Falha na conexão: ".mysqli_connect_error());
+  die("Falha na conexão: ".mysqli_connect_error());
 }
 ?>
