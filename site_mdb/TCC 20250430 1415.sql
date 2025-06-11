@@ -32,6 +32,7 @@ CREATE TABLE `games` (
   `description` varchar(45) NOT NULL,
   `link` varchar(45) NOT NULL,
   `image` blob NOT NULL,
+  `clicks` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -40,9 +41,9 @@ CREATE TABLE `games` (
 --
 
 /*!40000 ALTER TABLE `games` DISABLE KEYS */;
-INSERT INTO `games` (`id`,`name`,`description`,`link`,`image`) VALUES 
- (1,'life slit','akaakakakakakakakakaak','https://www.google.com/',''),
- (2,'adsadasdasdasd','eeeeeeeeeeeeeeeeeeeeee','https://youtube.com','');
+INSERT INTO `games` (`id`,`name`,`description`,`link`,`image`,`clicks`) VALUES 
+ (1,'life slit','akaakakakakakakakakaak','https://www.google.com/','',8),
+ (2,'adsadasdasdasd','eeeeeeeeeeeeeeeeeeeeee','https://youtube.com','',8);
 /*!40000 ALTER TABLE `games` ENABLE KEYS */;
 
 
@@ -59,7 +60,7 @@ CREATE TABLE `users` (
   `password` varchar(45) NOT NULL,
   `role` varchar(5) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
@@ -67,7 +68,8 @@ CREATE TABLE `users` (
 
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`,`name`,`username`,`email`,`password`,`role`) VALUES 
- (1,'Giovanni Rohrig','4NUB1Ss2','soprasalvarf@gmail.com','1234','');
+ (1,'Giovanni Rohrig','4NUB1Ss2','soprasalvarf@gmail.com','1234',''),
+ (2,'','','','','');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 

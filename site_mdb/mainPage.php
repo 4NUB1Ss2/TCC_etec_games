@@ -1,7 +1,5 @@
 <?php include_once("./php/conexao.php"); 
 
-$sql = "SELECT * FROM games ORDER BY id DESC LIMIT 4";
-$query = mysqli_query($conn, $sql) or die ("Erro");
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -117,14 +115,21 @@ $query = mysqli_query($conn, $sql) or die ("Erro");
   <h1>Ultimos Lançamentos</h1>
 <div class="row">
 <?php
-$result=mysqli_query($conn,$sql);
+
+
+$recentes = "SELECT * FROM games ORDER BY id DESC LIMIT 4";
+$query = mysqli_query($conn, $recentes) or die ("Erro");
+$result=mysqli_query($conn,$recentes);
 
 while($tbl=mysqli_fetch_array($result))
 {
-	$link = $tbl["link"];
+	
+  $id = $tbl["id"];
+  $link = $tbl["link"];
 	$name = $tbl["name"];
 	$desc = $tbl["description"];
 	$img = $tbl["image"];
+  $clicks = $tbl["clicks"]+1;
 	
 
 
@@ -144,6 +149,10 @@ while($tbl=mysqli_fetch_array($result))
   echo "</div>";
   echo "</div>"; 
   echo "</div>";
+
+  $click = "UPDATE games set clicks='$clicks' where id='$id'";
+  $click_query = mysqli_query($conn, $click) or die("ERRO");
+
 }
 ?>
   
