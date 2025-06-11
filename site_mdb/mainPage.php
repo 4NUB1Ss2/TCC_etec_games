@@ -121,30 +121,31 @@ $result=mysqli_query($conn,$sql);
 
 while($tbl=mysqli_fetch_array($result))
 {
-	$cod = $tbl["id"];
-	$nome = "teste";
-	$tel = $tbl["description"];
-	$cont = $tbl["image"];
+	$link = $tbl["link"];
+	$name = $tbl["name"];
+	$desc = $tbl["description"];
+	$img = $tbl["image"];
 	
 
 
+
+  echo "<div class='col-sm-3'>";
+    echo "<div class='card'>"; 
+  echo "<div class='bg-image hover-overlay' data-mdb-ripple-init data-mdb-ripple-color='light'>";
+    echo "<img src='https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp' class='img-fluid'/>";
+    echo "<a href='#!'>";
+     echo "<div class='mask' style='background-color: rgba(251, 251, 251, 0.15);'></div>";
+    echo "</a>";
+  echo "</div>";
+  echo "<div class='card-body'>";
+    echo "<h5 class='card-title text-center'> $name</h5>";
+    echo "<p class='card-text'> $desc</p>";
+    echo "<a href=$link class='btn btn-primary align-items-center' data-mdb-ripple-init>Baixar</a>";
+  echo "</div>";
+  echo "</div>"; 
+  echo "</div>";
 }
 ?>
-  <div class="col-sm-3">
-    <div class="card">
-  <div class="bg-image hover-overlay" data-mdb-ripple-init data-mdb-ripple-color="light">
-    <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp" class="img-fluid"/>
-    <a href="#!">
-      <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-    </a>
-  </div>
-  <div class="card-body">
-    <h5 class="card-title text-center"><?php echo $nome?>jogo 1</h5>
-    <p class="card-text">Uma breve descrição do jogo, contando a história ou as características do jogo</p>
-    <a href="#!" class="btn btn-primary align-items-center" data-mdb-ripple-init>Baixar</a>
-  </div>
-  </div>  
-  </div>
   
 </div>
 

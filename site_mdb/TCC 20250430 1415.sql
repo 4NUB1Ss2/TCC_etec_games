@@ -33,13 +33,16 @@ CREATE TABLE `games` (
   `link` varchar(45) NOT NULL,
   `image` blob NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `games`
 --
 
 /*!40000 ALTER TABLE `games` DISABLE KEYS */;
+INSERT INTO `games` (`id`,`name`,`description`,`link`,`image`) VALUES 
+ (1,'life slit','akaakakakakakakakakaak','https://www.google.com/',''),
+ (2,'adsadasdasdasd','eeeeeeeeeeeeeeeeeeeeee','https://youtube.com','');
 /*!40000 ALTER TABLE `games` ENABLE KEYS */;
 
 
