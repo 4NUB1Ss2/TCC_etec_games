@@ -145,6 +145,7 @@ while($tbl=mysqli_fetch_array($result))
   echo "<div class='card-body'>";
     echo "<h5 class='card-title text-center'> $name</h5>";
     echo "<p class='card-text'> $desc</p>";
+    
     echo "<a href=$link class='btn btn-primary align-items-center' data-mdb-ripple-init>Baixar</a>";
   echo "</div>";
   echo "</div>"; 
