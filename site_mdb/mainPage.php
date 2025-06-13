@@ -138,7 +138,7 @@ while($tbl=mysqli_fetch_array($result))
     echo "<input type='hidden' name='game_id' value='$id'>";
   echo "<div class='bg-image hover-overlay' data-mdb-ripple-init data-mdb-ripple-color='light'>";
     echo "<img src='https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp' class='img-fluid'/>";
-    echo "<a href='#!'>";
+    echo "<a href='$link'>";
      echo "<div class='mask' style='background-color: rgba(251, 251, 251, 0.15);'></div>";
     echo "</a>";
   echo "</div>";
@@ -191,7 +191,7 @@ while($tbl2=mysqli_fetch_array($result2))
     echo "<input type='hidden' name='game_id' value='$id'>";
   echo "<div class='bg-image hover-overlay' data-mdb-ripple-init data-mdb-ripple-color='light'>";
     echo "<img src='https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp' class='img-fluid'/>";
-    echo "<a href='#!'>";
+    echo "<a href='$link'>";
      echo "<div class='mask' style='background-color: rgba(251, 251, 251, 0.15);'></div>";
     echo "</a>";
   echo "</div>";
