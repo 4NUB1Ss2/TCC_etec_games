@@ -1,6 +1,20 @@
-<?php include_once("./php/conexao.php"); 
+<?php 
+session_start();
+if (!isset($_SESSION['login']) || !isset($_SESSION['senha'])) {
+    header('Location: login.php');
+    exit();
+}
+$role = $_SESSION['role'] ?? 'user';
+include_once("./php/conexao.php");
 
+if (isset($_GET['logout'])) {
+    session_destroy();
+    header('Location: login.php');
+    exit();
+}
 ?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -31,27 +45,18 @@
   <body class="bg-dark" data-mdb-theme="dark">
     <!-- Start your project here-->
      <!-- Navbar -->
-<nav class="navbar bg-dark navbar-expand-lg  fixed-top" data-mdb-theme="dark">
+     
+
+<nav class="navbar navbar-expand-lg bgdark fixed-top" data-mdb-theme="dark">
   <!-- Container wrapper -->
   <div class="container-fluid">
-    <!-- Navbar brand -->
-    <a class="navbar-brand me-2" href="https://mdbgo.com/">
-      <img
-        src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp"
-        height="16"
-        alt="MDB Logo"
-        loading="lazy"
-        style="margin-top: -1px;"
-      />
-    </a>
-
     <!-- Toggle button -->
     <button
       data-mdb-collapse-init
       class="navbar-toggler"
       type="button"
-      data-mdb-target="#navbarButtonsExample"
-      aria-controls="navbarButtonsExample"
+      data-mdb-target="#navbarRightAlignExample"
+      aria-controls="navbarRightAlignExample"
       aria-expanded="false"
       aria-label="Toggle navigation"
     >
@@ -59,48 +64,143 @@
     </button>
 
     <!-- Collapsible wrapper -->
-    <div class="collapse navbar-collapse" id="navbarButtonsExample">
+    <div class="collapse navbar-collapse" id="navbarRightAlignExample">
       <!-- Left links -->
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" href="#">Dashboard</a>
+          <a class="nav-link active" aria-current="page" href="./mainPage.php">Home</a>
         </li>
-      </ul>
-      <!-- Left links -->
-
-      <div class="d-flex align-items-center">
+        <?php if ($role == 'admin'): ?>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Gerenciar Alunos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Gerenciar Jogos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Gerenciar Escolas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Gerenciar Categorias</a>
+        </li>
+        <!-- Navbar dropdown -->
         <li class="nav-item dropdown">
           <a
             data-mdb-dropdown-init
-            class="nav-link dropdown-toggle d-flex align-items-center"
+            class="nav-link dropdown-toggle"
             href="#"
-            id="navbarDropdownMenuLink"
+            id="navbarDropdown"
             role="button"
             aria-expanded="false"
           >
-            <img
-              src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp"
-              class="rounded-circle"
-              height="22"
-              alt="Portrait of a Woman"
-              loading="lazy"
-            />
+            Meu Perfil
           </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <!-- Dropdown menu -->
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li>
-              <a class="dropdown-item" href="#">My profile</a>
+              <a class="dropdown-item" href="#">Ver Perfil</a>
             </li>
             <li>
-              <a class="dropdown-item" href="#">Settings</a>
+              <a class="dropdown-item" href="#">Configurações</a>
             </li>
             <li>
-              <a class="dropdown-item" href="#">Logout</a>
+              <a class="dropdown-item" href="mainPage.php?logout=1">Sair</a>
             </li>
           </ul>
         </li>
-        
-        
-      </div>
+        <?php elseif ($role == 'professor'): ?>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Gerenciar Alunos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Gerenciar Jogos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Gerenciar Escola</a>
+        </li>
+        <!-- Navbar dropdown -->
+        <li class="nav-item dropdown">
+          <a
+            data-mdb-dropdown-init
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            aria-expanded="false"
+          >
+            Meu Perfil
+          </a>
+          <!-- Dropdown menu -->
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li>
+              <a class="dropdown-item" href="#">Ver Perfil</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">Configurações</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="mainPage.php?logout=1">Sair</a>
+            </li>
+          </ul>
+        </li>
+        <?php elseif ($role == 'aluno'): ?>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Gerenciar Jogos</a>
+        </li>
+        <!-- Navbar dropdown -->
+        <li class="nav-item dropdown">
+          <a
+            data-mdb-dropdown-init
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            aria-expanded="false"
+          >
+            Meu Perfil
+          </a>
+          <!-- Dropdown menu -->
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li>
+              <a class="dropdown-item" href="#">Ver Perfil</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">Configurações</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="mainPage.php?logout=1">Sair</a>
+            </li>
+          </ul>
+        </li>
+        <?php else: ?>
+        <!-- Navbar dropdown -->
+        <li class="nav-item dropdown">
+          <a
+            data-mdb-dropdown-init
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            aria-expanded="false"
+          >
+            Meu Perfil
+          </a>
+          <!-- Dropdown menu -->
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li>
+              <a class="dropdown-item" href="#">Ver Perfil</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">Configurações</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="mainPage.php?logout=1">Sair</a>
+            </li>
+          </ul>
+        </li>
+        <?php endif; ?>
+      </ul>
+      <!-- Left links -->
     </div>
     <!-- Collapsible wrapper -->
   </div>

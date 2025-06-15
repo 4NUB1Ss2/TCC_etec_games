@@ -1,49 +1,43 @@
 <?php
-// session_start inicia a sessão
+include_once 'conexao.php'; // Incluindo o arquivo de conexão com o banco de dados
 session_start();
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 // as variáveis login e senha recebem os dados digitados na página anterior
 $login = $_POST['login'];
 $senha = $_POST['senha'];
 
-// as próximas 3 linhas são responsáveis em se conectar com o bando de dados.
-$servername = "localhost";
-$database = "etecgames";
-$username = "root";
-$password = "root";
+// as próximas 3 linhas são responsáveis em se conectar com o
 
 //criando conexão
-$conn = mysqli_connect($servername,$username, $password, $database);
 
 if(!$conn){
     die("Falha na conexão: ".mysqli_connect_error());
 }
 
-$sql = "SELECT * FROM users WHERE email = '$login' AND password = '$senha'";
+$sql = "SELECT * FROM users WHERE email='$login' AND password='$senha' LIMIT 1";
 
 // A variavel $result pega as varias $login e $senha, faz uma
 //pesquisa na tabela de usuarios
 
-$result = mysqli_query($conn, $sql) or die ("Erro");
+$result = mysqli_query($conn, $sql);
+$user = mysqli_fetch_assoc($result);
 
 
-/* Logo abaixo temos um bloco com if e else, verificando se a variável $result foi
-bem sucedida, ou seja se ela estiver encontrado algum registro idêntico o seu valor
-será igual a 1, se não, se não tiver registros seu valor será 0. Dependendo do
-resultado ele redirecionará para a página site.php ou retornara  para a página
-do formulário inicial para que se possa tentar novamente realizar o login */
-
-
-if(mysqli_num_rows ($result) > 0 )
-{
-$_SESSION['login'] = $login;
-$_SESSION['senha'] = $senha;
-header('location:../index.php');
+if ($user) {
+    $_SESSION['login'] = $user['email'];
+    $_SESSION['senha'] = $user['password'];
+    $_SESSION['role'] = $user['role']; // Certifique-se que existe o campo 'role' na tabela
+    header('Location: ../mainPage.php');
+    exit();
+} else {
+    unset($_SESSION['login']);
+    unset($_SESSION['senha']);
+    unset($_SESSION['role']);
+    header('Location: ../login.php?erro=1');
+    exit();
 }
-else{
-  unset ($_SESSION['login']); //apaga o valor da variável
-  unset ($_SESSION['senha']);
-  header('location:../mainPage.html');
-
-  }
 ?>
