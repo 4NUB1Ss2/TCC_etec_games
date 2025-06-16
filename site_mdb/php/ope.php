@@ -30,13 +30,15 @@ $user = mysqli_fetch_assoc($result);
 if ($user) {
     $_SESSION['login'] = $user['email'];
     $_SESSION['senha'] = $user['password'];
-    $_SESSION['role'] = $user['role']; // Certifique-se que existe o campo 'role' na tabela
+    $_SESSION['role'] = $user['role'];
+    $_SESSION['user_id'] = $user['id']; // Certifique-se que existe o campo 'role' na tabela
     header('Location: ../mainPage.php');
     exit();
 } else {
     unset($_SESSION['login']);
     unset($_SESSION['senha']);
     unset($_SESSION['role']);
+    unset($_SESSION['user_id']);
     header('Location: ../login.php?erro=1');
     exit();
 }

@@ -5,6 +5,7 @@ if (!isset($_SESSION['login']) || !isset($_SESSION['senha'])) {
     exit();
 }
 $role = $_SESSION['role'] ?? 'user';
+$user_id = $_SESSION['user_id'] ?? null;
 include_once("./php/conexao.php");
 
 if (isset($_GET['logout'])) {
@@ -113,7 +114,7 @@ if (isset($_GET['logout'])) {
           <a class="nav-link" href="#">Gerenciar Alunos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="./manageGames.php">Gerenciar Jogos</a>
+          <a class="nav-link" href="#">Gerenciar Jogos</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Gerenciar Escola</a>
@@ -145,7 +146,7 @@ if (isset($_GET['logout'])) {
         </li>
         <?php elseif ($role == 'aluno'): ?>
         <li class="nav-item">
-          <a class="nav-link" href="./manageGames.php">Gerenciar Jogos</a>
+          <a class="nav-link" href="#">Gerenciar Jogos</a>
         </li>
         <!-- Navbar dropdown -->
         <li class="nav-item dropdown">
@@ -212,12 +213,12 @@ if (isset($_GET['logout'])) {
 <br>
 <br><br>
 <div class="container-lg">
-  <h1>Ultimos Lançamentos</h1>
+  <h1>Seus Jogos</h1>
 <div class="row">
 <?php
 
 
-$recentes = "SELECT * FROM games ORDER BY id DESC LIMIT 4";
+$recentes = "SELECT * FROM games WHERE user_id = $user_id ORDER BY id DESC LIMIT 4";
 $query = mysqli_query($conn, $recentes) or die ("Erro");
 $result=mysqli_query($conn,$recentes);
 
@@ -265,130 +266,6 @@ while($tbl=mysqli_fetch_array($result))
 <br>
 <br><br>
 
-<div class="container-lg">
-  <h1>Mais Baixados</h1>
-<div class="row">
-  <?php
-
-
-$clicados = "SELECT * FROM games ORDER BY clicks DESC LIMIT 4";
-$query2 = mysqli_query($conn, $clicados) or die ("Erro");
-$result2=mysqli_query($conn,$clicados);
-
-while($tbl2=mysqli_fetch_array($result2))
-{
-	
-  $id = $tbl2["id"];
-  $link = $tbl2["link"];
-	$name = $tbl2["name"];
-	$desc = $tbl2["description"];
-	$img = $tbl2["image"];
-  $clicks = $tbl2["clicks"]+1;
-
-  echo "<div class='col-sm-3'>";
-    echo "<div class='card'>"; 
-    echo "<form action='./php/card.php' method='post'>";
-    echo "<input type='hidden' name='game_id' value='$id'>";
-  echo "<div class='bg-image hover-overlay' data-mdb-ripple-init data-mdb-ripple-color='light'>";
-    echo "<img src='https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp' class='img-fluid'/>";
-    echo "<a href='$link'>";
-     echo "<div class='mask' style='background-color: rgba(251, 251, 251, 0.15);'></div>";
-    echo "</a>";
-  echo "</div>";
-  echo "<div class='card-body'>";
-    echo "<h5 class='card-title text-center'> $name</h5>";
-    echo "<p class='card-text'> $desc</p>";
-    
-    echo "<button type='submit' class='btn btn-primary align-items-center' data-mdb-ripple-init>Baixar</button>";
-  echo "</form>";
-    echo "</div>";
-  echo "</div>"; 
-  echo "</div>";
-  echo "<br>";
-  echo "<br>";
-  echo "<br>";
-  
-
-
-}
-?>
-</div>
-<br>
-<br><br>
-
-<div class="container-lg">
-  <h1>Recomendados</h1>
-<div class="row">
-  <div class="col-sm-3">
-    <div class="card">
-  <div class="bg-image hover-overlay" data-mdb-ripple-init data-mdb-ripple-color="light">
-    <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp" class="img-fluid"/>
-    <a href="#!">
-      <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-    </a>
-  </div>
-  <div class="card-body">
-    <h5 class="card-title text-center">jogo 1</h5>
-    <p class="card-text">Uma breve descrição do jogo, contando a história ou as características do jogo</p>
-    <a href="#!" class="btn btn-primary align-items-center" data-mdb-ripple-init>Baixar</a>
-  </div>
-  </div>  
-  </div>
-
-  <div class="col-sm-3">
-    <div class="card">
-  <div class="bg-image hover-overlay" data-mdb-ripple-init data-mdb-ripple-color="light">
-    <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp" class="img-fluid"/>
-    <a href="#!">
-      <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-    </a>
-  </div>
-  <div class="card-body">
-    <h5 class="card-title text-center">jogo 2</h5>
-    <p class="card-text">Uma breve descrição do jogo, contando a história ou as características do jogo</p>
-    <a href="#!" class="btn btn-primary align-items-center" data-mdb-ripple-init>Baixar</a>
-  </div>
-  </div>
-  </div>
-  <div class="col-sm-3">
-    <div class="card">
-  <div class="bg-image hover-overlay" data-mdb-ripple-init data-mdb-ripple-color="light">
-    <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp" class="img-fluid"/>
-    <a href="#!">
-      <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-    </a>
-  </div>
-  <div class="card-body">
-    <h5 class="card-title text-center">jogo 3</h5>
-    <p class="card-text">Uma breve descrição do jogo, contando a história ou as características do jogo</p>
-    <a href="#!" class="btn btn-primary align-items-center" data-mdb-ripple-init>Baixar</a>
-  </div>
-  </div>
-  </div>
-  <div class="col-sm-3">
-    <div class="card">
-  <div class="bg-image hover-overlay" data-mdb-ripple-init data-mdb-ripple-color="light">
-    <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp" class="img-fluid"/>
-    <a href="#!">
-      <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-    </a>
-  </div>
-  <div class="card-body">
-    <h5 class="card-title text-center">jogo 4</h5>
-    <p class="card-text">Uma breve descrição do jogo, contando a história ou as características do jogo</p>
-    <a href="#!" class="btn btn-primary align-items-center" data-mdb-ripple-init>Baixar</a>
-  </div>
-  </div>
-  </div>
-</div>
-<br><br><br><br>
-<br> <br>
-  
- 
-
-  
-  
-</div>
 
 
 
