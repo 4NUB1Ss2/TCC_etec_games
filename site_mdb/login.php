@@ -312,7 +312,7 @@ while($tbl=mysqli_fetch_array($result))
     echo "<form action='./php/card.php' method='post'>";
     echo "<input type='hidden' name='game_id' value='$id'>";
   echo "<div class='bg-image hover-overlay' data-mdb-ripple-init data-mdb-ripple-color='light'>";
-    echo "<img src='https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp' class='img-fluid'/>";
+    echo "<img src='./php/exibirImage.php?id=$id' class='img-fluid'/>";
     echo "<a href='$link'>";
      echo "<div class='mask' style='background-color: rgba(251, 251, 251, 0.15);'></div>";
     echo "</a>";
@@ -365,7 +365,7 @@ while($tbl2=mysqli_fetch_array($result2))
     echo "<form action='./php/card.php' method='post'>";
     echo "<input type='hidden' name='game_id' value='$id'>";
   echo "<div class='bg-image hover-overlay' data-mdb-ripple-init data-mdb-ripple-color='light'>";
-    echo "<img src='https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp' class='img-fluid'/>";
+    echo "<img src='./php/exibirImage.php?id=$id' class='img-fluid'/>";
     echo "<a href='$link'>";
      echo "<div class='mask' style='background-color: rgba(251, 251, 251, 0.15);'></div>";
     echo "</a>";
@@ -443,7 +443,7 @@ while($tbl2=mysqli_fetch_array($result2))
   <div class="col-sm-3">
     <div class="card">
   <div class="bg-image hover-overlay" data-mdb-ripple-init data-mdb-ripple-color="light">
-    <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp" class="img-fluid"/>
+    <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" class="img-fluid"/>
     <a href="#!">
       <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
     </a>
@@ -568,8 +568,8 @@ while($tbl2=mysqli_fetch_array($result2))
     <!-- End your project here-->
 
     <!-- MDB -->
-    <script type="text/javascript" src="js/mdb.umd.min.js"></script>
+    <script type="text/javascript" src="./js/mdb.umd.min.js"></script>
     <!-- Custom scripts -->
-    <script type="text/javascript" src="js/script.js"></script>
+    <script type="module" src="./js/script.js"></script>
   </body>
 </html>

@@ -210,6 +210,16 @@ if (isset($_GET['logout'])) {
 <!-- Navbar -->
 
 
+
+
+
+
+
+
+
+
+
+
 <br>
 <br><br>
 <div class="container-lg">
@@ -238,7 +248,7 @@ while($tbl=mysqli_fetch_array($result))
     echo "<form action='./php/card.php' method='post'>";
     echo "<input type='hidden' name='game_id' value='$id'>";
   echo "<div class='bg-image hover-overlay' data-mdb-ripple-init data-mdb-ripple-color='light'>";
-    echo "<img src='https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp' class='img-fluid'/>";
+    echo "<img src='./php/exibirImage.php?id=$id' class='img-fluid'/>";
     echo "<a href='$link'>";
      echo "<div class='mask' style='background-color: rgba(251, 251, 251, 0.15);'></div>";
     echo "</a>";
@@ -247,7 +257,7 @@ while($tbl=mysqli_fetch_array($result))
     echo "<h5 class='card-title text-center'> $name</h5>";
     echo "<p class='card-text'> $desc</p>";
     
-    echo "<button type='submit' class='btn btn-primary align-items-center' data-mdb-ripple-init>Baixar</button>";
+    echo "<button type='submit' class='btn btn-primary align-items-center' data-mdb-ripple-init>Editar</button>";
   echo "</form>";
     echo "</div>";
   echo "</div>"; 
@@ -260,8 +270,6 @@ while($tbl=mysqli_fetch_array($result))
 
 }
 ?>
-  
-</div>
 
 <br>
 <br><br>
