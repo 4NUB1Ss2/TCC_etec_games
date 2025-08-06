@@ -69,14 +69,14 @@ if (isset($_GET['logout'])) {
       <!-- Left links -->
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="./mainPage.php">Home</a>
+          <a class="nav-link" aria-current="page" href="./mainPage.php">Home</a>
         </li>
         <?php if ($role == 'admin'): ?>
         <li class="nav-item">
           <a class="nav-link" href="#">Gerenciar Alunos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="./manageGames.php">Gerenciar Jogos</a>
+          <a class="nav-link active" aria-current="page" href="./manageGames.php">Gerenciar Jogos</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Gerenciar Escolas</a>
@@ -114,7 +114,7 @@ if (isset($_GET['logout'])) {
           <a class="nav-link" href="#">Gerenciar Alunos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Gerenciar Jogos</a>
+          <a class="nav-link active" aria-current="page" href="./manageGames.php">Gerenciar Jogos</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Gerenciar Escola</a>
@@ -146,7 +146,7 @@ if (isset($_GET['logout'])) {
         </li>
         <?php elseif ($role == 'aluno'): ?>
         <li class="nav-item">
-          <a class="nav-link" href="#">Gerenciar Jogos</a>
+          <a class="nav-link active" aria-current="page" href="./manageGames.php">Gerenciar Jogos</a>
         </li>
         <!-- Navbar dropdown -->
         <li class="nav-item dropdown">
@@ -276,11 +276,14 @@ while($tbl=mysqli_fetch_array($result))
           echo '<button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>';
         echo '</div>';
         echo "<div class='modal-body'>";
-        echo '<div class="bg-image hover-overlay ripple">';
-        echo "<img src='./php/exibirImage.php?id=$id' class='img-fluid' />";
-        echo '<div class="mask" style="background-color: rgba(57, 192, 237, 0.2);"></div>';
-      echo '</div>';
-        
+        //echo '<div class="bg-image hover-overlay ripple">';
+        //echo "<img src='./php/exibirImage.php?id=$id' class='thumbnail' />";
+        //echo '<div class="mask" style="background-color: rgba(0, 0, 0, 0.2);"></div>';
+       //echo '</div>';
+          echo '<div class="form-outline" data-mdb-input-init>';
+          echo '<input type="text" id="form12" class="form-control" />';
+          echo '<label class="form-label" for="form12">Nome do Jogo</label>';
+          echo '</div>';
         echo "</div>";
         echo '<div class="modal-footer">';
           echo '<button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">';

@@ -1,4 +1,4 @@
-import { Modal, Collapse, Ripple, initMDB } from "mdb-ui-kit";
+import { Modal, Collapse, Ripple, Input, initMDB } from "mdb-ui-kit";
 
-initMDB({ Modal, Collapse, Ripple });
+initMDB({ Modal, Collapse, Ripple, Input});
 
