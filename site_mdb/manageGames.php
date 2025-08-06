@@ -224,6 +224,7 @@ if (isset($_GET['logout'])) {
 <br><br>
 <div class="container-lg">
   <h1>Seus Jogos</h1>
+  <hr class="hr hr-blurry" />
 <div class="row">
 <?php
 
@@ -257,7 +258,7 @@ while($tbl=mysqli_fetch_array($result))
     echo "<h5 class='card-title text-center'> $name</h5>";
     echo "<p class='card-text'> $desc</p>";
     
-    echo "<button type='button' class='btn btn-primary align-items-center' data-mdb-ripple-init data-mdb-modal-init data-mdb-target='#exampleModal'>Editar</button>";
+    echo "<button type='button' class='btn btn-primary align-items-center' data-mdb-ripple-init data-mdb-modal-init data-mdb-target='#modal$id'>Editar</button>";
   echo "</form>";
     echo "</div>";
   echo "</div>"; 
@@ -267,14 +268,20 @@ while($tbl=mysqli_fetch_array($result))
   echo "<br>";
   
    
-  echo '<div class="modal top fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="static" data-mdb-keyboard="true">';
+  echo "<div class='modal top fade' id='modal$id' tabindex='-1' aria-labelledby='modalLabel$id' aria-hidden='true' data-mdb-backdrop='static' data-mdb-keyboard='true'>";
     echo '<div class="modal-dialog modal-xl ">';
       echo '<div class="modal-content">';
         echo '<div class="modal-header">';
           echo '<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>';
           echo '<button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>';
         echo '</div>';
-        echo "<div class='modal-body'> $name </div>";
+        echo "<div class='modal-body'>";
+        echo '<div class="bg-image hover-overlay ripple">';
+        echo "<img src='./php/exibirImage.php?id=$id' class='img-fluid' />";
+        echo '<div class="mask" style="background-color: rgba(57, 192, 237, 0.2);"></div>';
+      echo '</div>';
+        
+        echo "</div>";
         echo '<div class="modal-footer">';
           echo '<button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">';
             echo 'Close';
@@ -284,6 +291,8 @@ while($tbl=mysqli_fetch_array($result))
       echo '</div>';
     echo '</div>';
   echo '</div>';
+
+ 
 
 }
 ?>
