@@ -257,7 +257,7 @@ while($tbl=mysqli_fetch_array($result))
     echo "<h5 class='card-title text-center'> $name</h5>";
     echo "<p class='card-text'> $desc</p>";
     
-    echo "<button type='submit' class='btn btn-primary align-items-center' data-mdb-ripple-init>Editar</button>";
+    echo "<button type='button' class='btn btn-primary align-items-center' data-mdb-ripple-init data-mdb-modal-init data-mdb-target='#exampleModal'>Editar</button>";
   echo "</form>";
     echo "</div>";
   echo "</div>"; 
@@ -266,10 +266,47 @@ while($tbl=mysqli_fetch_array($result))
   echo "<br>";
   echo "<br>";
   
-
+   
+  echo '<div class="modal top fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="static" data-mdb-keyboard="true">';
+    echo '<div class="modal-dialog modal-xl ">';
+      echo '<div class="modal-content">';
+        echo '<div class="modal-header">';
+          echo '<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>';
+          echo '<button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>';
+        echo '</div>';
+        echo "<div class='modal-body'> $name </div>";
+        echo '<div class="modal-footer">';
+          echo '<button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">';
+            echo 'Close';
+          echo '</button>';
+          echo '<button type="button" class="btn btn-primary">Save changes</button>';
+        echo '</div>';
+      echo '</div>';
+    echo '</div>';
+  echo '</div>';
 
 }
 ?>
+
+
+<!-- Modal -->
+<div class="modal top fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">
+  <div class="modal-dialog modal-xl ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">...</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <br>
 <br><br>

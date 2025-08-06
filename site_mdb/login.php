@@ -321,7 +321,7 @@ while($tbl=mysqli_fetch_array($result))
     echo "<h5 class='card-title text-center'> $name</h5>";
     echo "<p class='card-text'> $desc</p>";
     
-    echo "<button type='submit' class='btn btn-primary align-items-center' data-mdb-ripple-init>Baixar</button>";
+    echo "<button type='submit' class='btn btn-primary align-items-center' data-mdb-ripple-init >Baixar</button>";
   echo "</form>";
     echo "</div>";
   echo "</div>"; 
