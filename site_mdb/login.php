@@ -1,5 +1,12 @@
+<?php include_once("./php/conexao.php")?>
 
-<?php include_once("./php/conexao.php") ?>
+
+<!-- 
+842366646662-n4nvpknre73gu9jps7d778btqll4rjos.apps.googleusercontent.com CLIENT id
+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 client secret
+
+
+-->
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -23,9 +30,7 @@
     <!-- MDB -->
     <link rel="stylesheet" href="css/mdb.min.css" />
     
-    
-    
-    </script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
   </head>
   <body class="bg-dark" data-mdb-theme="dark">
     <!-- Start your project here-->
@@ -149,6 +154,22 @@
                       <button type="button" class="btn btn-primary btn-floating mx-1" data-mdb-ripple-init>
                         <i class="fab fa-facebook-f"></i>
                       </button>
+                      <div class="container mt-5 pt-5 text-center">
+                          <h1 class="text-white">Login com Google</h1>
+                          <div id="g_id_onload"
+                              data-client_id="842366646662-n4nvpknre73gu9jps7d778btqll4rjos.apps.googleusercontent.com"
+                              data-login_uri="http://localhost/login.php"
+                              data-auto_prompt="false">
+                          </div>
+                          <div class="g_id_signin"
+                              data-type="standard"
+                              data-size="large"
+                              data-theme="outline"
+                              data-text="signin_with"
+                              data-shape="rectangular"
+                              data-logo_alignment="left">
+                          </div>
+                        </div>
 
                       <button type="button" class="btn btn-primary btn-floating mx-1" data-mdb-ripple-init>
                         <i class="fab fa-google"></i>
@@ -573,3 +594,26 @@ while($tbl2=mysqli_fetch_array($result2))
     <script type="module" src="./js/script.js"></script>
   </body>
 </html>
+
+<?php
+require_once 'vendor/autoload.php';
+
+use Google\Client;
+
+$client = new Google\Client();
+$client->setClientId('842366646662-n4nvpknre73gu9jps7d778btqll4rjos.apps.googleusercontent.com'); // Substitua pelo seu Client ID
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $id_token = $_POST['id_token'];
+
+    $payload = $client->verifyIdToken($id_token);
+    if ($payload) {
+        $userid = $payload['sub'];
+        $email = $payload['email'];
+        $name = $payload['name'];
+        echo "Usuário logado: $name ($email)";
+    } else {
+        echo "Token inválido.";
+    }
+}
+?>
