@@ -158,7 +158,7 @@ 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 client secret
                           <h1 class="text-white">Login com Google</h1>
                           <div id="g_id_onload"
                               data-client_id="842366646662-n4nvpknre73gu9jps7d778btqll4rjos.apps.googleusercontent.com"
-                              data-login_uri="http://localhost/login.php"
+                              data-login_uri="http://localhost:8080/TCC_etec_games/site_mdb/login.php"
                               data-auto_prompt="false">
                           </div>
                           <div class="g_id_signin"
@@ -598,7 +598,7 @@ while($tbl2=mysqli_fetch_array($result2))
 <?php
 require_once 'vendor/autoload.php';
 
-use Google\Client;
+use Google\Client;  
 
 $client = new Google\Client();
 $client->setClientId('842366646662-n4nvpknre73gu9jps7d778btqll4rjos.apps.googleusercontent.com'); // Substitua pelo seu Client ID
@@ -611,9 +611,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $userid = $payload['sub'];
         $email = $payload['email'];
         $name = $payload['name'];
-        echo "Usuário logado: $name ($email)";
+        
+
+        echo '<form action="./php/ope.php" method="POST" id="googleForm">
+          <input type="hidden" name="id_token" id="id_token">
+          <input type="hidden" name="name" id="name">
+          <input type="hidden" name="email" id="email">
+        </form>';
+        echo '<script>document.getElementById("googleForm").submit();</script>';
     } else {
         echo "Token inválido.";
     }
 }
+
+  
 ?>
