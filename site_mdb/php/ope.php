@@ -9,6 +9,8 @@ error_reporting(E_ALL);
 // as variáveis login e senha recebem os dados digitados na página anterior
 $login = $_POST['login'];
 $senha = $_POST['senha'];
+$id_token = $_POST['id_token'];
+$email = $_POST['email'];
 
 // as próximas 3 linhas são responsáveis em se conectar com o
 
@@ -18,7 +20,10 @@ if(!$conn){
     die("Falha na conexão: ".mysqli_connect_error());
 }
 
-$sql = "SELECT * FROM users WHERE email='$login' AND password='$senha' LIMIT 1";
+
+
+if ((empty($login) and empty($senha))){
+    $sql = "SELECT * FROM users WHERE email='$email' AND id_token='$id_token' LIMIT 1";
 
 // A variavel $result pega as varias $login e $senha, faz uma
 //pesquisa na tabela de usuarios
@@ -28,8 +33,8 @@ $user = mysqli_fetch_assoc($result);
 
 
 if ($user) {
-    $_SESSION['login'] = $user['email'];
-    $_SESSION['senha'] = $user['password'];
+    $_SESSION['email'] = $user['email'];
+    $_SESSION['token_id'] = $user['token_id'];
     $_SESSION['role'] = $user['role'];
     $_SESSION['user_id'] = $user['id']; // Certifique-se que existe o campo 'role' na tabela
     header('Location: ../mainPage.php');
@@ -41,5 +46,8 @@ if ($user) {
     unset($_SESSION['user_id']);
     header('Location: ../login.php?erro=1');
     exit();
+}
+
+
 }
 ?>

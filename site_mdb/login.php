@@ -613,12 +613,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $name = $payload['name'];
         
 
-        echo '<form action="./php/ope.php" method="POST" id="googleForm">
-          <input type="hidden" name="id_token" id="id_token">
-          <input type="hidden" name="name" id="name">
-          <input type="hidden" name="email" id="email">
-        </form>';
-        echo '<script>document.getElementById("googleForm").submit();</script>';
+        echo "<form action='./php/ope.php' method='POST' id='googleForm'>";
+          echo "<input type='hidden' name='id_token' id='id_token' value='$userid'>";
+          echo "<input type='hidden' name='name' id='name'";
+          echo "<input type='hidden' name='email' id='email' value='$email'>";
+        echo "</form>";
+        echo "<script>document.getElementById('googleForm').submit();</script>";
     } else {
         echo "Token inválido.";
     }
