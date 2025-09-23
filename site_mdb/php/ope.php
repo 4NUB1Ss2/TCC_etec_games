@@ -36,7 +36,7 @@ if ((empty($login) and empty($senha))) {
             $email = $payload['email'];
             $name = $payload['name'];
             // Verifica se o usuário já existe no banco de dados
-            $sql = "SELECT * FROM users WHERE email='$email' and senha='testedogooglelogin' LIMIT 1";
+            $sql = "SELECT * FROM users WHERE email='$email' and password='testedogooglelogin' LIMIT 1";
             $result = mysqli_query($conn, $sql);
             $user = mysqli_fetch_assoc($result);
 
@@ -86,5 +86,6 @@ elseif((!empty($login) and !empty($senha))) {
 } else {
     header('Location: ../login.php?erro=3');
     exit();
+}
 }
 ?>

@@ -158,7 +158,7 @@ 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 client secret
                           <h1 class="text-white">Login com Google</h1>
                           <div id="g_id_onload"
                               data-client_id="842366646662-n4nvpknre73gu9jps7d778btqll4rjos.apps.googleusercontent.com"
-                              data-login_uri="http://localhost:8080/TCC_etec_games/site_mdb/ope.php"
+                              data-login_uri="http://localhost:8080/TCC_etec_games/site_mdb/php/ope.php"
                               data-auto_prompt="false">
                           </div>
                           <div class="g_id_signin"
