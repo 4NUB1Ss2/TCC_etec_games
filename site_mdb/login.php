@@ -1,9 +1,20 @@
-<?php include_once("./php/conexao.php")?>
+<?php include_once("./php/conexao.php");
+require  "./vendor/autoload.php";
+$client = new Google\Client;
 
+$client->setClientId("842366646662-n4nvpknre73gu9jps7d778btqll4rjos.apps.googleusercontent.com");
+$client->setClientSecret("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");
+$client->setRedirectUri("http://localhost:8080/site_mdb/redirect.php");
 
+$client->addScope("email");
+$client->addScope("profile");
+
+$url = $client->createAuthUrl();
+
+?>
 <!-- 
 842366646662-n4nvpknre73gu9jps7d778btqll4rjos.apps.googleusercontent.com CLIENT id
-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 client secret
+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 client secret
 
 
 -->
@@ -14,6 +25,7 @@ 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 client secret
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="google-signin-client_id" content="842366646662-n4nvpknre73gu9jps7d778btqll4rjos.apps.googleusercontent.com">
     <title>Material Design for Bootstrap</title>
     <!-- MDB icon -->
     <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
@@ -151,28 +163,13 @@ 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 client secret
                   <form action="./php/ope.php" method="post">
                     <div class="text-center mb-3">
                       <p>Sign in with:</p>
-                      <button type="button" class="btn btn-primary btn-floating mx-1" data-mdb-ripple-init>
+                      <button type="button"  class="btn btn-primary btn-floating mx-1" data-mdb-ripple-init>
                         <i class="fab fa-facebook-f"></i>
+                        <a href="www.facebook.com"></a>
                       </button>
-                      <div class="container mt-5 pt-5 text-center">
-                          <h1 class="text-white">Login com Google</h1>
-                          <div id="g_id_onload"
-                              data-client_id="842366646662-n4nvpknre73gu9jps7d778btqll4rjos.apps.googleusercontent.com"
-                              data-login_uri="http://localhost:8080/TCC_etec_games/site_mdb/php/ope.php"
-                              data-auto_prompt="false">
-                          </div>
-                          <div class="g_id_signin"
-                              data-type="standard"
-                              data-size="large"
-                              data-theme="outline"
-                              data-text="signin_with"
-                              data-shape="rectangular"
-                              data-logo_alignment="left">
-                          </div>
-                        </div>
-
-                      <button type="button" class="btn btn-primary btn-floating mx-1" data-mdb-ripple-init>
+                      <button type="button" href="<?= $url?>" class="btn btn-primary btn-floating mx-1" data-mdb-ripple-init>
                         <i class="fab fa-google"></i>
+                        
                       </button>
 
                       <button type="button" class="btn btn-primary btn-floating mx-1" data-mdb-ripple-init>
@@ -182,7 +179,9 @@ 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 client secret
                       <button type="button" class="btn btn-primary btn-floating mx-1" data-mdb-ripple-init>
                         <i class="fab fa-github"></i>
                       </button>
+                      <div class="g-signin2" data-onsuccess="onSignIn"></div>
                     </div>
+                    
 
                     <p class="text-center">or:</p>
 
@@ -592,37 +591,13 @@ while($tbl2=mysqli_fetch_array($result2))
     <script type="text/javascript" src="./js/mdb.umd.min.js"></script>
     <!-- Custom scripts -->
     <script type="module" src="./js/script.js"></script>
+    <script>
+    function onSignIn(googleUser) {
+      var profile = googleUser.getBasicProfile();
+      console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+      console.log('Name: ' + profile.getName());
+      console.log('Image URL: ' + profile.getImageUrl());
+      console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+}</script> 
   </body>
 </html>
-
-<?php
-require_once 'vendor/autoload.php';
-
-use Google\Client;  
-
-$client = new Google\Client();
-$client->setClientId('842366646662-n4nvpknre73gu9jps7d778btqll4rjos.apps.googleusercontent.com'); // Substitua pelo seu Client ID
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $id_token = $_POST['id_token'];
-
-    $payload = $client->verifyIdToken($id_token);
-    if ($payload) {
-        $userid = $payload['sub'];
-        $email = $payload['email'];
-        $name = $payload['name'];
-        
-
-        echo "<form action='./php/ope.php' method='POST' id='googleForm'>";
-          echo "<input type='hidden' name='id_token' id='id_token' value='$userid'>";
-          echo "<input type='hidden' name='name' id='name'";
-          echo "<input type='hidden' name='email' id='email' value='$email'>";
-        echo "</form>";
-        echo "<script>document.getElementById('googleForm').submit();</script>";
-    } else {
-        echo "Token inválido.";
-    }
-}
-
-  
-?>
