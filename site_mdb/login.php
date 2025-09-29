@@ -4,7 +4,7 @@ $client = new Google\Client;
 
 $client->setClientId("842366646662-n4nvpknre73gu9jps7d778btqll4rjos.apps.googleusercontent.com");
 $client->setClientSecret("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");
-$client->setRedirectUri("http://localhost:8080/site_mdb/redirect.php");
+$client->setRedirectUri("http://localhost/TCC_etec_games/site_mdb/php/redirect.php");
 
 $client->addScope("email");
 $client->addScope("profile");
@@ -163,11 +163,11 @@ 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 client secret
                   <form action="./php/ope.php" method="post">
                     <div class="text-center mb-3">
                       <p>Sign in with:</p>
-                      <button type="button"  class="btn btn-primary btn-floating mx-1" data-mdb-ripple-init>
+                      <button type="button" onclick="window.location.href='https://www.facebook.com'" class="btn btn-primary btn-floating mx-1" data-mdb-ripple-init>
                         <i class="fab fa-facebook-f"></i>
-                        <a href="www.facebook.com"></a>
+                      
                       </button>
-                      <button type="button" href="<?= $url?>" class="btn btn-primary btn-floating mx-1" data-mdb-ripple-init>
+                      <button type="button" onclick="window.location.href='<?= $url?>'" class="btn btn-primary btn-floating mx-1" data-mdb-ripple-init>
                         <i class="fab fa-google"></i>
                         
                       </button>
@@ -598,6 +598,6 @@ while($tbl2=mysqli_fetch_array($result2))
       console.log('Name: ' + profile.getName());
       console.log('Image URL: ' + profile.getImageUrl());
       console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-}</script> 
+       }</script> 
   </body>
 </html>
