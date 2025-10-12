@@ -7,7 +7,7 @@ $email = $_POST['email'];
 $password = $_POST['password'];
 
 
-$sql = "INSERT INTO users (name,username,email,password) values('$name', '$username', '$email', '$password')";
+$sql = "INSERT INTO users (name,username,email,password,role,isgoogle) values('$name', '$username', '$email', '$password', 'user', 0)";
 $query = mysqli_query($conn, $sql) or die ("Erro");
 
  if (mysqli_affected_rows($conn)){

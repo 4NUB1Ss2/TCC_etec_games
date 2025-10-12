@@ -22,24 +22,39 @@ if(!$conn){
 }
 
 
-
-
-$sql = "SELECT * FROM users WHERE email='$login' AND password='$senha' LIMIT 1";
-$result = mysqli_query($conn, $sql);
-$user = mysqli_fetch_assoc($result);
-
-
-if ($user) {
-    $_SESSION['login'] = $user['email'];
-    $_SESSION['senha'] = $user['password'];
-    $_SESSION['role'] = $user['role']; // Certifique-se que existe o campo 'role' na tabela
-    header('Location: ../mainPage.php');
-    exit();
-} else {
+$isGoogleCheck = "SELECT * FROM users WHERE email='$login' AND isgoogle=1 LIMIT 1";
+$check = mysqli_query($conn, $isGoogleCheck);
+$checkUser = mysqli_fetch_assoc($check);
+if ($checkUser) {
     unset($_SESSION['login']);
     unset($_SESSION['senha']);
     unset($_SESSION['role']);
-    header('Location: ../login.php?erro=1');
+    header('Location: ../login.php?erro2=1');
     exit();
 }
+else {
+    $sql = "SELECT * FROM users WHERE email='$login' AND password='$senha' AND isgoogle=0 LIMIT 1";
+    $result = mysqli_query($conn, $sql);
+    $user = mysqli_fetch_assoc($result);
+
+
+    if ($user) {
+        $_SESSION['login'] = $user['email'];
+        $_SESSION['senha'] = $user['password'];
+        $_SESSION['role'] = $user['role']; // Certifique-se que existe o campo 'role' na tabela
+        header('Location: ../mainPage.php');
+        exit();
+    } else {
+        unset($_SESSION['login']);
+        unset($_SESSION['senha']);
+        unset($_SESSION['role']);
+        header('Location: ../login.php?erro=1');
+        exit();
+    }
+    // Prosseguir com a verificação normal
+}
+
+
+
+
 ?>

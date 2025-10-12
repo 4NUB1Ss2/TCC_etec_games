@@ -9,6 +9,7 @@ $client->setRedirectUri("http://localhost/TCC_etec_games/site_mdb/php/redirect.p
 if ( ! isset($_GET["code"])){
 
     exit("Login Failed");
+    echo "<script>alert('Login Failed');</script>";
 
 }
 $token = $client->fetchAccessTokenWithAuthCode($_GET["code"]);
@@ -36,13 +37,21 @@ $givenName = $userinfo->givenName;
     <title>Document</title>
 </head>
 <body>
-    <form action="./ope.php" method="post" name="googleapi">
-        <input type="hidden" name="login" value="<?= $email?>">
-        <input type="hidden" name="senha" value="<?= $id?>">
-        <input type="hidden" name="name" value="<?= $name?>"> 
-        <script>
-            document.querySelector('form[name="googleapi"]').submit();
-        </script>
+    nome: <?php echo $name; ?> <br>
+    email: <?php echo $email; ?> <br>
+    id: <?php echo $id; ?> <br>
+    sobrenome: <?php echo $familyName; ?> <br>
+    nome dado: <?php echo $givenName; ?> <br>
+    <img src="<?php echo $picture; ?>" alt="foto de perfil"> <br>
+    <button><a href="../index.php">Voltar</a></button>
+
+    <form action="googlelogin.php" method="post">
+        <input type="hidden" name="name" value="<?php echo $name; ?>">
+        <input type="hidden" name="username" value="<?php echo $givenName; ?>">
+        <input type="hidden" name="email" value="<?php echo $email; ?>">
+        <input type="hidden" name="password" value="<?php echo $id; ?>">
+        <input type="submit" value="Continuar com o Google">
+        
 
 
     </form>

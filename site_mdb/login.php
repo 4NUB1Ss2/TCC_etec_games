@@ -10,7 +10,6 @@ $client->addScope("email");
 $client->addScope("profile");
 
 $url = $client->createAuthUrl();
-
 ?>
 <!-- 
 842366646662-n4nvpknre73gu9jps7d778btqll4rjos.apps.googleusercontent.com CLIENT id
@@ -103,6 +102,7 @@ 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 client secret
   <!-- Container wrapper -->
 </nav>
 <!-- Navbar -->
+
 
 
 
@@ -306,6 +306,19 @@ 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 client secret
 
       <br>
 <br><br>
+ <?php
+ if (isset($_GET['erro'])) {
+    echo "<div class='alert alert-danger' role='alert' >";
+    echo "Email ou senha incorretos";
+    echo "</div>";
+}
+if (isset($_GET['erro2'])) {
+    echo "<div class='alert alert-danger' role='alert' >";
+    echo "Sua conta está vinculada a uma conta do Google.";
+    echo "</div>";
+}
+?>
+
 <div class="container-lg">
   <h1>Ultimos Lançamentos</h1>
 <div class="row">
