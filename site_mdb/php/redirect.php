@@ -34,27 +34,23 @@ $givenName = $userinfo->givenName;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Redirecting...</title>
 </head>
 <body>
-    nome: <?php echo $name; ?> <br>
-    email: <?php echo $email; ?> <br>
-    id: <?php echo $id; ?> <br>
-    sobrenome: <?php echo $familyName; ?> <br>
-    nome dado: <?php echo $givenName; ?> <br>
-    <img src="<?php echo $picture; ?>" alt="foto de perfil"> <br>
-    <button><a href="../index.php">Voltar</a></button>
+    Redirecionando... 
 
-    <form action="googlelogin.php" method="post">
+    <form id="googleLoginForm" action="googlelogin.php" method="post">
         <input type="hidden" name="name" value="<?php echo $name; ?>">
         <input type="hidden" name="username" value="<?php echo $givenName; ?>">
         <input type="hidden" name="email" value="<?php echo $email; ?>">
         <input type="hidden" name="password" value="<?php echo $id; ?>">
         <input type="submit" value="Continuar com o Google">
-        
-
-
     </form>
+    <script>
+        window.onload = function() {
+            document.getElementById("googleLoginForm").submit();
+        };
+    </script>
 </body>
 </html>
 

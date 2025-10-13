@@ -1,4 +1,4 @@
-<?php include_once("./php/conexao.php");
+<?php require_once("./php/conexao.php");
 require  "./vendor/autoload.php";
 $client = new Google\Client;
 
@@ -10,6 +10,7 @@ $client->addScope("email");
 $client->addScope("profile");
 
 $url = $client->createAuthUrl();
+
 ?>
 <!-- 
 842366646662-n4nvpknre73gu9jps7d778btqll4rjos.apps.googleusercontent.com CLIENT id
@@ -317,8 +318,13 @@ if (isset($_GET['erro2'])) {
     echo "Sua conta está vinculada a uma conta do Google.";
     echo "</div>";
 }
-?>
 
+if (isset($_GET['erro3'])) {
+    echo "<div class='alert alert-danger' role='alert' >";
+    echo "Erro ao cadastrar, tente novamente.";
+    echo "</div>";
+}
+?>
 <div class="container-lg">
   <h1>Ultimos Lançamentos</h1>
 <div class="row">
@@ -497,107 +503,7 @@ while($tbl2=mysqli_fetch_array($result2))
   
   
 </div>
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <footer class=" bg-dark text-center bottom" data-mdb-theme="dark">
-      <!-- Grid container -->
-      <div class="container p-4 pb-0">
-        <!-- Section: Social media -->
-        <section class="mb-4">
-          <!-- Facebook -->
-          <a
-          data-mdb-ripple-init
-            class="btn text-white btn-floating m-1"
-            style="background-color: #3b5998;"
-            href="#!"
-            role="button"
-            ><i class="fab fa-facebook-f"></i
-          ></a>
-
-          <!-- Twitter -->
-          <a
-            data-mdb-ripple-init
-            class="btn text-white btn-floating m-1"
-            style="background-color: #55acee;"
-            href="#!"
-            role="button"
-            ><i class="fab fa-twitter"></i
-          ></a>
-
-          <!-- Google -->
-          <a
-            data-mdb-ripple-init
-            class="btn text-white btn-floating m-1"
-            style="background-color: #dd4b39;"
-            href="#!"
-            role="button"
-            ><i class="fab fa-google"></i
-          ></a>
-
-          <!-- Instagram -->
-          <a
-            data-mdb-ripple-init
-            class="btn text-white btn-floating m-1"
-            style="background-color: #ac2bac;"
-            href="#!"
-            role="button"
-            ><i class="fab fa-instagram"></i
-          ></a>
-
-          <!-- Linkedin -->
-          <a
-            data-mdb-ripple-init
-            class="btn text-white btn-floating m-1"
-            style="background-color: #0082ca;"
-            href="#!"
-            role="button"
-            ><i class="fab fa-linkedin-in"></i
-          ></a>
-          <!-- Github -->
-          <a
-            data-mdb-ripple-init
-            class="btn text-white btn-floating m-1"
-            style="background-color: #333333;"
-            href="#!"
-            role="button"
-            ><i class="fab fa-github"></i
-          ></a>
-        </section>
-        <!-- Section: Social media -->
-      </div>
-      <!-- Grid container -->
-
-      <!-- Copyright -->
-      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
-        © 2020 Copyright:
-        <a class="text-body" href="https://mdbootstrap.com/">MDBootstrap.com</a>
-      </div>
-      <!-- Copyright -->
-    </footer>
+<?php include_once("./php/footer.php"); ?>
     <!-- End your project here-->
 
     <!-- MDB -->

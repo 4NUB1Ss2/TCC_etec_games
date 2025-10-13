@@ -29,6 +29,8 @@ if ($checkUser) {
     unset($_SESSION['login']);
     unset($_SESSION['senha']);
     unset($_SESSION['role']);
+    unset($_SESSION['id']);
+    unset($_SESSION['name']);
     header('Location: ../login.php?erro2=1');
     exit();
 }
@@ -41,13 +43,17 @@ else {
     if ($user) {
         $_SESSION['login'] = $user['email'];
         $_SESSION['senha'] = $user['password'];
-        $_SESSION['role'] = $user['role']; // Certifique-se que existe o campo 'role' na tabela
+        $_SESSION['role'] = $user['role'];
+        $_SESSION['id'] = $user['id'];
+        $_SESSION['name'] = $user['name']; // Certifique-se que existe o campo 'name' na tabela
         header('Location: ../mainPage.php');
         exit();
     } else {
         unset($_SESSION['login']);
         unset($_SESSION['senha']);
         unset($_SESSION['role']);
+        unset($_SESSION['id']);
+        unset($_SESSION['name']);
         header('Location: ../login.php?erro=1');
         exit();
     }
