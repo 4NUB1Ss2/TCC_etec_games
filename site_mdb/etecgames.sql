@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.42, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.43, for Linux (x86_64)
 --
 -- Host: localhost    Database: etecgames
 -- ------------------------------------------------------
--- Server version	8.0.42-0ubuntu0.24.04.2
+-- Server version	8.0.43-0ubuntu0.24.04.2
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -59,8 +59,9 @@ CREATE TABLE `users` (
   `email` varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
   `password` varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
   `role` varchar(10) COLLATE utf8mb4_general_ci NOT NULL,
+  `isgoogle` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -69,7 +70,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Giovanni Rohrig','4NUB1Ss2','soprasalvarf@gmail.com','1234','admin'),(2,'Cal','CalDaMassa','teste123@gmail.com','1234','professor'),(5,'natan','natan','natan@gmail.com','1234','aluno'),(6,'sophie','sophie','sophie@gmail.com','1234','user');
+INSERT INTO `users` VALUES (1,'Giovanni Rohrig','4NUB1Ss2','soprasalvarf@gmail.com','1234','admin',0),(2,'Cal','CalDaMassa','teste123@gmail.com','1234','professor',0),(5,'natan','natan','natan@gmail.com','1234','admin',0),(6,'sophie','sophie','sophie@gmail.com','1234','user',0),(7,'Giovanni Bautto Rohrig','Giovanni','soprasalvarf@gmail.com','110346374810405930680','user',1),(9,'CFD ANUBIS','CFD','betto061104mnbvcxz@gmail.com','108107874363600169670','user',1),(10,'Giovanni Rohrig','Giovanni','giovanni.4nub1s@gmail.com','110444855144674904694','user',1),(12,'Lucas','Peruano','lucas@gmail.com','1234','user',0),(13,'Lorhan','ben10','lorhan@gmail.com','1234','user',0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -82,4 +83,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-07-30 18:18:30
+-- Dump completed on 2025-10-13  5:40:28

@@ -23,7 +23,7 @@
         </li>
         <?php if ($role == 'admin'): ?>
         <li class="nav-item">
-          <a class="nav-link" href="#">Gerenciar Alunos</a>
+          <a class="nav-link" href="./manageUsers.php">Gerenciar Alunos</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="./manageGames.php">Gerenciar Jogos</a>
@@ -61,7 +61,7 @@
         </li>
         <?php elseif ($role == 'professor'): ?>
         <li class="nav-item">
-          <a class="nav-link" href="#">Gerenciar Alunos</a>
+          <a class="nav-link" href="./manageUsers.php">Gerenciar Alunos</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="./manageGames.php">Gerenciar Jogos</a>
@@ -94,7 +94,7 @@
             </li>
           </ul>
         </li>
-        <?php elseif ($role == 'aluno'): ?>
+        <?php elseif ($role == 'user'): ?>
         <li class="nav-item">
           <a class="nav-link" href="./manageGames.php">Gerenciar Jogos</a>
         </li>

@@ -318,6 +318,11 @@ if (isset($_GET['erro2'])) {
     echo "Sua conta está vinculada a uma conta do Google.";
     echo "</div>";
 }
+if (isset($_GET['exists'])) {
+    echo "<div class='alert alert-danger' role='alert' >";
+    echo "Email ou Username já cadastrado.";
+    echo "</div>";
+}
 
 if (isset($_GET['erro3'])) {
     echo "<div class='alert alert-danger' role='alert' >";
