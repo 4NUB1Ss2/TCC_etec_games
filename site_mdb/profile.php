@@ -273,7 +273,7 @@ if (isset($_GET['logout'])) {
 
 
 
-<?php include_once("./footer.php"); ?>
+<?php include_once("./php/footer.php"); ?>
     <!-- End your project here-->
 
     <!-- MDB -->

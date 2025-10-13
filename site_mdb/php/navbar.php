@@ -22,17 +22,29 @@
           <a class="nav-link active" aria-current="page" href="./mainPage.php">Home</a>
         </li>
         <?php if ($role == 'admin'): ?>
-        <li class="nav-item">
-          <a class="nav-link" href="./manageUsers.php">Gerenciar Alunos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="./manageGames.php">Gerenciar Jogos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Gerenciar Escolas</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Gerenciar Categorias</a>
+          <li class="nav-item dropdown">
+          <a
+            data-mdb-dropdown-init
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            aria-expanded="false"
+          >
+            Gerenciar
+          </a>
+          <!-- Dropdown menu -->
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li>
+              <a class="dropdown-item" href="./manageUsers.php">Gerenciar Usuarios</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="./manageGames.php">Gerenciar jogos</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">Gerenciar Escolas</a>
+            </li>
+          </ul>
         </li>
         <!-- Navbar dropdown -->
         <li class="nav-item dropdown">
@@ -60,14 +72,29 @@
           </ul>
         </li>
         <?php elseif ($role == 'professor'): ?>
-        <li class="nav-item">
-          <a class="nav-link" href="./manageUsers.php">Gerenciar Alunos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="./manageGames.php">Gerenciar Jogos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Gerenciar Escola</a>
+          <li class="nav-item dropdown">
+          <a
+            data-mdb-dropdown-init
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            aria-expanded="false"
+          >
+            Gerenciar
+          </a>
+          <!-- Dropdown menu -->
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li>
+              <a class="dropdown-item" href="./manageUsers.php">Gerenciar Usuarios</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="./manageGames.php">Gerenciar jogos</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">Gerenciar Escolas</a>
+            </li>
+          </ul>
         </li>
         <!-- Navbar dropdown -->
         <li class="nav-item dropdown">
@@ -95,8 +122,23 @@
           </ul>
         </li>
         <?php elseif ($role == 'user'): ?>
-        <li class="nav-item">
-          <a class="nav-link" href="./manageGames.php">Gerenciar Jogos</a>
+          <li class="nav-item dropdown">
+          <a
+            data-mdb-dropdown-init
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            aria-expanded="false"
+          >
+            Gerenciar
+          </a>
+          <!-- Dropdown menu -->
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li>
+              <a class="dropdown-item" href="./manageGames.php">Gerenciar jogos</a>
+            </li>
+          </ul>
         </li>
         <!-- Navbar dropdown -->
         <li class="nav-item dropdown">
