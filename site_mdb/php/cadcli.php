@@ -1,5 +1,5 @@
 <?php
-include_once("conexao.php");
+require_once("conexao.php");
 session_start();
 $name = $_POST['name'];
 $username = $_POST['username'];
@@ -29,6 +29,51 @@ if (isset($_POST['addUser'])){
             
              echo " <script> location.href='../addUser.php?error=1' </script>";
         }
+    }
+}
+else if (isset($_POST['editUser'])){
+    // Verifica se o email já está cadastrado
+   $usuario_id = $_POST['user_id'];
+   $username1 = $_POST['username'];
+   $email1 = $_POST['email'];
+   $name1 = $_POST['name'];
+   $password1 = $_POST['password'];
+   $role1 = $_POST['role'];
+   $checkEmail = "SELECT * FROM users WHERE (email='$email1' OR username='$username1') AND id != '$usuario_id' LIMIT 1";
+   $result = mysqli_query($conn, $checkEmail);
+    $check = mysqli_fetch_assoc($result);
+    if ($check) { // Se o usuário já existe
+        echo " <script> location.href='../editUser.php?id=$usuario_id&exists=1' </script>";
+        exit();
+    }else{
+        $sql = "UPDATE users SET name='$name1', username='$username1', email='$email1', role='$role1'";
+        if (!empty($password1)){
+            $sql .= ", password='$password1'";
+        }
+        $sql .= " WHERE id='$usuario_id' LIMIT 1";
+        mysqli_query($conn, $sql) or die ("Erro");
+        if (mysqli_affected_rows($conn)){
+            echo " <script> location.href='../manageUsers.php?success2=1' </script>";
+        }
+        else{
+            echo " <script> location.href='../editUser.php?id=$usuario_id&error=1' </script>";
+        }
+
+
+
+    }
+
+    
+}
+else if (isset($_POST['deleteUser'])){
+    $usuario_id = $_POST['deleteUser'];
+    $sql = "DELETE FROM users WHERE id='$usuario_id' LIMIT 1";
+    mysqli_query($conn, $sql) or die ("Erro");
+    if (mysqli_affected_rows($conn)){
+        echo " <script> location.href='../manageUsers.php?success3=1' </script>";
+    }
+    else{
+        echo " <script> location.href='../manageUsers.php?error3=1' </script>";
     }
 }
 else{

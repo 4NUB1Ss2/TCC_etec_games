@@ -54,6 +54,15 @@ if (isset($_GET['logout'])) {
 if (isset($_GET['success'])) {
    echo "<div class='alert alert-success' role='alert'>Usuário cadastrado com sucesso!</div>";
 }
+if (isset($_GET['success2'])) {
+   echo "<div class='alert alert-success' role='alert'>Usuário atualizado com sucesso!</div>";
+}
+if (isset($_GET['error3'])) {
+   echo "<div class='alert alert-danger' role='alert'>Erro ao excluir usuário. Tente novamente.</div>";
+}
+if (isset($_POST['success3'])) {
+   echo "<div class='alert alert-success' role='alert'>Usuário excluído com sucesso!</div>";
+}
 ?>
 
 <div class="container mt-4">
@@ -92,10 +101,10 @@ if (isset($_GET['success'])) {
                 <td><?= $user['email'] ?></td>
                 <td><?= $user['role'] ?></td>
                 <td>
-                  <a href="" class="btn btn-secondary btn-sm">Visualizar</a>
-                  <a href="" class="btn btn-success btn-sm">Editar</a>
-                  <form action="" method="POST" class="d-inline">
-                    <button type="submit" name="deleteUser" class="btn btn-danger btn-sm">
+                  <a href="./viewUser.php?id=<?= $user['id'] ?>" class="btn btn-secondary btn-sm">Visualizar</a>
+                  <a href="./editUser.php?id=<?= $user['id'] ?>" class="btn btn-success btn-sm">Editar</a>
+                  <form action="./php/cadcli.php" method="POST" class="d-inline">
+                    <button onclick="return confirm('Tem certeza que deseja excluir este usuário?');" type="submit" name="deleteUser" value="<?= $user['id'] ?>" class="btn btn-danger btn-sm">
                       Excluir
                     </button>
 
