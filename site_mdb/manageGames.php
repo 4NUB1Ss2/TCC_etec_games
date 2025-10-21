@@ -38,7 +38,21 @@ if (isset($_GET['logout'])) {
     <!-- MDB -->
     <link rel="stylesheet" href="css/mdb.min.css" />
     
-    
+    <style>
+      /* limita imagens dentro de modais para não extrapolarem */
+      .modal-img {
+        max-width: 100%;
+        max-height: 70vh;   /* ajusta a altura máxima conforme necessário */
+        object-fit: contain; /* mantém proporção, sem recortar */
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      /* garante que o corpo do modal role corretamente se o conteúdo for alto */
+      .modal-body {
+        overflow-y: auto;
+      }
+    </style>
     
     </script>
    
@@ -63,10 +77,15 @@ if (isset($_GET['logout'])) {
 
 <br>
 <br><br>
+
 <div class="container-lg">
   <h1>Seus Jogos</h1>
   <hr class="hr hr-blurry" />
+  
 <div class="row">
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+  <button type="button" class="btn btn-primary align-items-center justify-content-around" data-mdb-ripple-init data-mdb-modal-init data-mdb-target="./addGame.php">Adicionar Jogo</button>
+  </div>
 <?php
 
 
@@ -99,7 +118,10 @@ while($tbl=mysqli_fetch_array($result))
     <h5 class='card-title text-center'> <?=$name?></h5>
     <p class='card-text'> <?=$desc?></p>
     
+    
+    <a href="./viewGame.php?id=<?=$id ?>" class="btn btn-secondary btn-sm">Visualizar</a>
     <button type='button' class='btn btn-primary align-items-center' data-mdb-ripple-init data-mdb-modal-init data-mdb-target='#modal<?=$id?>'>Editar</button>
+
   </form>
     </div>
   </div> 
@@ -118,9 +140,10 @@ while($tbl=mysqli_fetch_array($result))
         </div>
         <div class='modal-body'>
         <div class=" img-fluid hover-overlay ripple">
-        <img src='./php/exibirImage.php?id=<?=$id?>' />
+        <img src='./php/exibirImage.php?id=<?=$id?>' class="img-fluid modal-img"/>
         <div class="mask" style="background-color: rgba(0, 0, 0, 0.2);"></div>
        </div>
+        
         
           <div class="form-outline" data-mdb-input-init>
           <input type='text' value='<?=$name?>' id='form12' class='form-control' />
@@ -128,7 +151,7 @@ while($tbl=mysqli_fetch_array($result))
           </div>
         </div>
         <div class="modal-footer">
-         <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal"></button>
+         <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
             Close
           </button>
           <button type="button" class="btn btn-primary">Save changes</button>
