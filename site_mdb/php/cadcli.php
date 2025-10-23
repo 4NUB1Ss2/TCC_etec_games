@@ -6,6 +6,7 @@ $username = $_POST['username'];
 $email = $_POST['email'];
 $password = $_POST['password'];
 $role = $_POST['role'];
+$school_id = $_POST['school_id'];
 
 if (isset($_POST['addUser'])){
     // Verifica se o email já está cadastrado
@@ -19,7 +20,7 @@ if (isset($_POST['addUser'])){
         exit();
     }
     else {
-        $sql2  = "INSERT INTO users (name,username,email,password,role,isgoogle) values('$name', '$username', '$email', '$password', '$role', 0)";
+        $sql2  = "INSERT INTO users (name,username,email,password,role,isgoogle,school_id) values('$name', '$username', '$email', '$password', '$role', 0, '$school_id')";
         $query2 = mysqli_query($conn, $sql2) or die ("Erro");
         if (mysqli_affected_rows($conn)){
             
@@ -39,6 +40,7 @@ else if (isset($_POST['editUser'])){
    $name1 = $_POST['name'];
    $password1 = $_POST['password'];
    $role1 = $_POST['role'];
+   $school_id1 = $_POST['school_id'];
    $checkEmail = "SELECT * FROM users WHERE (email='$email1' OR username='$username1') AND id != '$usuario_id' LIMIT 1";
    $result = mysqli_query($conn, $checkEmail);
     $check = mysqli_fetch_assoc($result);
@@ -46,7 +48,7 @@ else if (isset($_POST['editUser'])){
         echo " <script> location.href='../editUser.php?id=$usuario_id&exists=1' </script>";
         exit();
     }else{
-        $sql = "UPDATE users SET name='$name1', username='$username1', email='$email1', role='$role1'";
+        $sql = "UPDATE users SET name='$name1', username='$username1', email='$email1', role='$role1' , school_id='$school_id1'";
         if (!empty($password1)){
             $sql .= ", password='$password1'";
         }
@@ -85,7 +87,7 @@ else{
         exit();
     }
     else{
-        $sql = "INSERT INTO users (name,username,email,password,role,isgoogle) values('$name', '$username', '$email', '$password', 'user', 0)";
+        $sql = "INSERT INTO users (name,username,email,password,role,isgoogle,school_id) values('$name', '$username', '$email', '$password', 'user', 0, 0)";
         $query = mysqli_query($conn, $sql) or die ("Erro");
 
         if (mysqli_affected_rows($conn)){
@@ -94,6 +96,7 @@ else{
             $_SESSION['senha'] = $password;
             $_SESSION['role'] = 'user';
             $_SESSION['name'] = $name;
+            $_SESSION['school_id'] = 0;
             echo " <script> location.href='../mainPage.php' </script>";
         }
         else{

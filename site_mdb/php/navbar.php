@@ -121,7 +121,7 @@
             </li>
           </ul>
         </li>
-        <?php elseif ($role == 'user'): ?>
+        <?php elseif ($role == 'student'): ?>
           <li class="nav-item dropdown">
           <a
             data-mdb-dropdown-init
@@ -140,6 +140,33 @@
             </li>
           </ul>
         </li>
+        <!-- Navbar dropdown -->
+        <li class="nav-item dropdown">
+          <a
+            data-mdb-dropdown-init
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            aria-expanded="false"
+          >
+            Meu Perfil
+          </a>
+          <!-- Dropdown menu -->
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li>
+              <a class="dropdown-item" href="./profile.php">Ver Perfil</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">Configurações</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="mainPage.php?logout=1">Sair</a>
+            </li>
+          </ul>
+        </li>
+        <?php elseif ($role == 'user'): ?>
+          
         <!-- Navbar dropdown -->
         <li class="nav-item dropdown">
           <a

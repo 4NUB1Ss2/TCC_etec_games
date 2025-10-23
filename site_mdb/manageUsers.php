@@ -47,10 +47,26 @@ if (isset($_GET['logout'])) {
      <!-- Navbar -->
      
 
-<?php include_once("./php/navbar.php"); ?>
+<?php include_once("./php/navbar.php"); 
+
+?>
 <br>
 <br><br>
 <?php
+if (isset($_GET['logout'])) {
+    session_destroy();
+    header('Location: login.php');
+    exit();
+}
+
+if ($role == 'user' || $role == 'student') {
+    echo "<div class='container mt-4'>
+            <div class='alert alert-warning' role='alert'>
+                Acesso restrito. Você não tem permissão para ver esta página.
+            </div>
+          </div>";
+    exit();
+}
 if (isset($_GET['success'])) {
    echo "<div class='alert alert-success' role='alert'>Usuário cadastrado com sucesso!</div>";
 }

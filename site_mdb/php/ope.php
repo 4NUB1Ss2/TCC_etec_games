@@ -31,6 +31,7 @@ if ($checkUser) {
     unset($_SESSION['role']);
     unset($_SESSION['id']);
     unset($_SESSION['name']);
+    unset($_SESSION['school_id']);
     header('Location: ../login.php?erro2=1');
     exit();
 }
@@ -45,7 +46,8 @@ else {
         $_SESSION['senha'] = $user['password'];
         $_SESSION['role'] = $user['role'];
         $_SESSION['id'] = $user['id'];
-        $_SESSION['name'] = $user['name']; // Certifique-se que existe o campo 'name' na tabela
+        $_SESSION['name'] = $user['name'];
+        $_SESSION['school_id'] = $user['school_id']; // Certifique-se que existe o campo 'school_id' na tabela
         header('Location: ../mainPage.php');
         exit();
     } else {
@@ -54,6 +56,7 @@ else {
         unset($_SESSION['role']);
         unset($_SESSION['id']);
         unset($_SESSION['name']);
+        unset($_SESSION['school_id']);
         header('Location: ../login.php?erro=1');
         exit();
     }
