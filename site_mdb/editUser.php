@@ -97,7 +97,8 @@ if (isset($_GET['error'])) {
             <div class="mb-3">
               <label for="role" class="form-label">Função</label>
               <select class="form-select" id="role" name="role"  required>
-                <option value="user" <?= $user['role'] == 'user' ? 'selected' : '' ?>>Aluno</option>
+                <option value="user" <?= $user['role'] == 'user' ? 'selected' : '' ?>>Usuário</option>
+                <option value="student" <?= $user['role'] == 'student' ? 'selected' : '' ?>>Aluno</option>
                 <option value="professor" <?= $user['role'] == 'professor' ? 'selected' : '' ?>>Professor</option>
                 <option value="admin" <?= $user['role'] == 'admin' ? 'selected' : '' ?>>Administrador</option>
               </select>

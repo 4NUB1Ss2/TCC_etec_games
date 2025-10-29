@@ -22,7 +22,7 @@ if (isset($_GET["logout"])) {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Material Design for Bootstrap</title>
+    <title>Gerenciar Jogos</title>
     <!-- MDB icon -->
     <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
     <!-- Font Awesome -->
@@ -53,16 +53,16 @@ if (isset($_GET["logout"])) {
 <br><br>
 <?php
 if (isset($_GET["success"])) {
-    echo "<div class='alert alert-success' role='alert'>Usuário cadastrado com sucesso!</div>";
+    echo "<div class='alert alert-success' role='alert'>Jogo cadastrado com sucesso!</div>";
 }
 if (isset($_GET["success2"])) {
-    echo "<div class='alert alert-success' role='alert'>Usuário atualizado com sucesso!</div>";
+    echo "<div class='alert alert-success' role='alert'>Jogo atualizado com sucesso!</div>";
 }
 if (isset($_GET["error3"])) {
-    echo "<div class='alert alert-danger' role='alert'>Erro ao excluir usuário. Tente novamente.</div>";
+    echo "<div class='alert alert-danger' role='alert'>Erro ao excluir Jogo. Tente novamente.</div>";
 }
 if (isset($_POST["success3"])) {
-    echo "<div class='alert alert-success' role='alert'>Usuário excluído com sucesso!</div>";
+    echo "<div class='alert alert-success' role='alert'>Jogo excluído com sucesso!</div>";
 }
 
 if ($role == "user") {
@@ -86,8 +86,8 @@ if ($role == "user") {
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
-          <h4> Lista de Usuários
-            <a href="./addUser.php" class="btn btn-primary float-end">Adicionar Usuário</a>
+          <h4> Lista de Jogos
+            <a href="./addUser.php" class="btn btn-primary float-end">Adicionar Jogo</a>
           </h4>
         </div>
         <div class="card-body">
@@ -136,7 +136,7 @@ if ($role == "user") {
                       "id"
                   ] ?>" class="btn btn-success btn-sm">Editar</a>
                   <form action="./php/cadcli.php" method="POST" class="d-inline">
-                    <button onclick="return confirm('Tem certeza que deseja excluir este usuário?');" type="submit" name="deleteUser" value="<?= $user[
+                    <button onclick="return confirm('Tem certeza que deseja excluir este Jogo?');" type="submit" name="deleteUser" value="<?= $user[
                         "id"
                     ] ?>" class="btn btn-danger btn-sm">
                       Excluir
@@ -147,7 +147,7 @@ if ($role == "user") {
               </tr>
               <?php }
               } else {
-                  echo "<h5> Nenhum usuário encontrado </h5>";
+                  echo "<h5> Nenhum Jogo encontrado </h5>";
               }
               ?>
             </tbody>
@@ -166,8 +166,8 @@ if ($role == "user") {
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
-          <h4> Lista de Usuários
-            <a href="./addUser.php" class="btn btn-primary float-end">Adicionar Usuário</a>
+          <h4> Lista de Jogos
+            <a href="./addUser.php" class="btn btn-primary float-end">Adicionar Jogo</a>
           </h4>
         </div>
         <div class="card-body">
@@ -216,7 +216,7 @@ if ($role == "user") {
                       "id"
                   ] ?>" class="btn btn-success btn-sm">Editar</a>
                   <form action="./php/cadcli.php" method="POST" class="d-inline">
-                    <button onclick="return confirm('Tem certeza que deseja excluir este usuário?');" type="submit" name="deleteUser" value="<?= $user[
+                    <button onclick="return confirm('Tem certeza que deseja excluir este Jogo?');" type="submit" name="deleteUser" value="<?= $user[
                         "id"
                     ] ?>" class="btn btn-danger btn-sm">
                       Excluir
@@ -227,7 +227,7 @@ if ($role == "user") {
               </tr>
               <?php }
               } else {
-                  echo "<h5> Nenhum usuário encontrado </h5>";
+                  echo "<h5> Nenhum Jogo encontrado </h5>";
                   echo mysqli_num_rows($result);
               }
               ?>
@@ -252,8 +252,8 @@ if ($role == "user") {
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
-          <h4> Lista de Usuários
-            <a href="./addUser.php" class="btn btn-primary float-end">Adicionar Usuário</a>
+          <h4> Lista de Jogos
+            <a href="./addUser.php" class="btn btn-primary float-end">Adicionar Jogo</a>
           </h4>
         </div>
         <div class="card-body">
@@ -302,7 +302,7 @@ if ($role == "user") {
                       "id"
                   ] ?>" class="btn btn-success btn-sm">Editar</a>
                   <form action="./php/cadcli.php" method="POST" class="d-inline">
-                    <button onclick="return confirm('Tem certeza que deseja excluir este usuário?');" type="submit" name="deleteUser" value="<?= $user[
+                    <button onclick="return confirm('Tem certeza que deseja excluir este Jogo?');" type="submit" name="deleteUser" value="<?= $user[
                         "id"
                     ] ?>" class="btn btn-danger btn-sm">
                       Excluir
@@ -313,7 +313,7 @@ if ($role == "user") {
               </tr>
               <?php }
               } else {
-                  echo "<h5> Nenhum usuário encontrado </h5>";
+                  echo "<h5> Nenhum Jogo encontrado </h5>";
               }
               ?>
             </tbody>

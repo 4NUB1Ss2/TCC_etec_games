@@ -85,7 +85,8 @@ if (isset($_GET['error'])) {
             <div class="mb-3">
               <label for="role" class="form-label">Função</label>
               <select class="form-select" id="role" name="role" required>
-                <option value="user">Aluno</option>
+                <option value="user">Usuário</option>
+                <option value="student">Aluno</option>
                 <option value="professor">Professor</option>
                 <option value="admin">Administrador</option>
               </select>

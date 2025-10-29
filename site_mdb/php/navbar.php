@@ -39,7 +39,7 @@
               <a class="dropdown-item" href="./manageUsers.php">Gerenciar Usuarios</a>
             </li>
             <li>
-              <a class="dropdown-item" href="./manageGames.php">Gerenciar jogos</a>
+              <a class="dropdown-item" href="./manageGame.php">Gerenciar jogos</a>
             </li>
             <li>
               <a class="dropdown-item" href="#">Gerenciar Escolas</a>
@@ -89,7 +89,7 @@
               <a class="dropdown-item" href="./manageUsers.php">Gerenciar Usuarios</a>
             </li>
             <li>
-              <a class="dropdown-item" href="./manageGames.php">Gerenciar jogos</a>
+              <a class="dropdown-item" href="./manageGame.php">Gerenciar jogos</a>
             </li>
             <li>
               <a class="dropdown-item" href="#">Gerenciar Escolas</a>
@@ -136,7 +136,7 @@
           <!-- Dropdown menu -->
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li>
-              <a class="dropdown-item" href="./manageGames.php">Gerenciar jogos</a>
+              <a class="dropdown-item" href="./manageGame.php">Gerenciar jogos</a>
             </li>
           </ul>
         </li>
