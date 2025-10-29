@@ -1,16 +1,17 @@
-<?php 
+<?php
 session_start();
-if (!isset($_SESSION['login']) || !isset($_SESSION['senha'])) {
-    header('Location: login.php');
+if (!isset($_SESSION["login"]) || !isset($_SESSION["senha"])) {
+    header("Location: login.php");
     exit();
 }
-$role = $_SESSION['role'] ?? 'user';
-$user_id = $_SESSION['id'] ?? null;
-require_once("./php/conexao.php");
+$role = $_SESSION["role"] ?? "user";
+$user_id = $_SESSION["id"] ?? null;
+$school_id = $_SESSION["school_id"] ?? 0;
+require_once "./php/conexao.php";
 
-if (isset($_GET['logout'])) {
+if (isset($_GET["logout"])) {
     session_destroy();
-    header('Location: login.php');
+    header("Location: login.php");
     exit();
 }
 ?>
@@ -36,45 +37,44 @@ if (isset($_GET['logout'])) {
     />
     <!-- MDB -->
     <link rel="stylesheet" href="css/mdb.min.css" />
-    
-    
-    
+
+
+
     </script>
-   
+
   </head>
   <body class="bg-dark" data-mdb-theme="dark">
     <!-- Start your project here-->
      <!-- Navbar -->
-     
 
-<?php include_once("./php/navbar.php"); ?>
+
+<?php include_once "./php/navbar.php"; ?>
 <br>
 <br><br>
 <?php
-if (isset($_GET['success'])) {
-   echo "<div class='alert alert-success' role='alert'>Usuário cadastrado com sucesso!</div>";
+if (isset($_GET["success"])) {
+    echo "<div class='alert alert-success' role='alert'>Usuário cadastrado com sucesso!</div>";
 }
-if (isset($_GET['success2'])) {
-   echo "<div class='alert alert-success' role='alert'>Usuário atualizado com sucesso!</div>";
+if (isset($_GET["success2"])) {
+    echo "<div class='alert alert-success' role='alert'>Usuário atualizado com sucesso!</div>";
 }
-if (isset($_GET['error3'])) {
-   echo "<div class='alert alert-danger' role='alert'>Erro ao excluir usuário. Tente novamente.</div>";
+if (isset($_GET["error3"])) {
+    echo "<div class='alert alert-danger' role='alert'>Erro ao excluir usuário. Tente novamente.</div>";
 }
-if (isset($_POST['success3'])) {
-   echo "<div class='alert alert-success' role='alert'>Usuário excluído com sucesso!</div>";
+if (isset($_POST["success3"])) {
+    echo "<div class='alert alert-success' role='alert'>Usuário excluído com sucesso!</div>";
 }
 
-if ($role == 'user') {
+if ($role == "user") {
     echo "<div class='container mt-4'>
             <div class='alert alert-warning' role='alert'>
                 Acesso restrito. Você não tem permissão para ver esta página.
             </div>
           </div>";
     exit();
-}
-elseif ($role == 'admin') {
+} if ($role == "admin") {
     // Usuário é admin, pode continuar
-?>
+    ?>
 
 
 
@@ -99,58 +99,68 @@ elseif ($role == 'admin') {
                 <th>Descrição</th>
                 <th>Link</th>
                 <th>Criador</th>
+                <th>Escola</th>
                 <th>Imagem</th>
+                
                 <th>Ações</th>
               </tr>
             </thead>
             <tbody>
-          
-            
+
+
               <?php
-              $sql = "SELECT  games.*, users.name AS user_name
+              $sql = "SELECT  games.*, users.name AS user_name, schools.name AS school_name
               FROM games
-              INNER JOIN users ON games.user_id = users.id";
+              INNER JOIN users ON games.user_id = users.id
+              INNER JOIN schools ON games.school_id = schools.id";
               $result = mysqli_query($conn, $sql);
               if (mysqli_num_rows($result) > 0) {
-                foreach ($result as $game) {
-              ?>
-              
+                  foreach ($result as $game) { ?>
+
               <tr>
-                <td><?= $game['id'] ?></td>
-                <td><?= $game['name'] ?></td>
-                <td><?= $game['description'] ?></td>
-                <td><?= $game['link'] ?></td>
-                <td><?= $game['user_name'] ?></td>
-                <td><img src="./php/exibirImage.php?id=<?= $game['id'] ?>" width="100" height="100" alt="Imagem do Jogo"></td>
+                <td><?= $game["id"] ?></td>
+                <td><?= $game["name"] ?></td>
+                <td><?= $game["description"] ?></td>
+                <td><a href="<?= $game["link"] ?>"><?= $game["link"] ?></a></td>
+                <td><?= $game["user_name"] ?></td>
+                <td><?= $game["school_name"] ?></td>
+                <td><img src="./php/exibirImage.php?id=<?= $game[
+                    "id"
+                ] ?>" width="100" height="100" alt="Imagem do Jogo"></td>
                 <td>
 
-                  <a href="./viewUser.php?id=<?= $game['id'] ?>" class="btn btn-secondary btn-sm">Visualizar</a>
-                  <a href="./editUser.php?id=<?= $game['id'] ?>" class="btn btn-success btn-sm">Editar</a>
+                  <a href="./viewUser.php?id=<?= $game[
+                      "id"
+                  ] ?>" class="btn btn-secondary btn-sm">Visualizar</a>
+                  <a href="./editUser.php?id=<?= $game[
+                      "id"
+                  ] ?>" class="btn btn-success btn-sm">Editar</a>
                   <form action="./php/cadcli.php" method="POST" class="d-inline">
-                    <button onclick="return confirm('Tem certeza que deseja excluir este usuário?');" type="submit" name="deleteUser" value="<?= $user['id'] ?>" class="btn btn-danger btn-sm">
+                    <button onclick="return confirm('Tem certeza que deseja excluir este usuário?');" type="submit" name="deleteUser" value="<?= $user[
+                        "id"
+                    ] ?>" class="btn btn-danger btn-sm">
                       Excluir
                     </button>
 
                   </form>
                 </td>
               </tr>
-              <?php
-                }
-              } else{
-                echo "<h5> Nenhum usuário encontrado </h5>";
+              <?php }
+              } else {
+                  echo "<h5> Nenhum usuário encontrado </h5>";
               }
               ?>
             </tbody>
-          </table>        
+          </table>
         </div>
-      </div>    
+      </div>
     </div>
   </div>
 </div>
-<?php
-} elseif ($role == 'student') {
+<?php } elseif ($role == "student") {
+  
     // Usuário é student, pode continuar
-?>
+    ?>
 <div class="container mt-4">
   <div class="row">
     <div class="col-md-12">
@@ -169,59 +179,68 @@ elseif ($role == 'admin') {
                 <th>Descrição</th>
                 <th>Link</th>
                 <th>Criador</th>
+                <th>Escola</th>
                 <th>Imagem</th>
                 <th>Ações</th>
               </tr>
             </thead>
             <tbody>
-          
-            
+
+
               <?php
-              $sql = "SELECT  games.*, users.name AS user_name
+              $sql = "SELECT  games.*, users.name AS user_name, schools.name AS school_name
               FROM games
-              INNER JOIN users ON games.user_id = users.id WHERE user_id = $user_id";
+              INNER JOIN users ON games.user_id = users.id
+              INNER JOIN schools ON games.school_id = schools.id
+              WHERE user_id = $user_id";
               $result = mysqli_query($conn, $sql);
               if (mysqli_num_rows($result) > 0) {
-                foreach ($result as $game) {
-              ?>
-              
+                  foreach ($result as $game) { ?>
+
               <tr>
-                <td><?= $game['id'] ?></td>
-                <td><?= $game['name'] ?></td>
-                <td><?= $game['description'] ?></td>
-                <td><?= $game['link'] ?></td>
-                <td><?= $game['user_name'] ?></td>
-                <td><img src="./php/exibirImage.php?id=<?= $game['id'] ?>" width="100" height="100" alt="Imagem do Jogo"></td>
+                <td><?= $game["id"] ?></td>
+                <td><?= $game["name"] ?></td>
+                <td><?= $game["description"] ?></td>
+                <td><a href="<?= $game["link"] ?>"><?= $game["link"] ?></a></td>
+                <td><?= $game["user_name"] ?></td>
+                <td><?= $game["school_name"] ?></td>
+                <td><img src="./php/exibirImage.php?id=<?= $game[
+                    "id"
+                ] ?>" width="100" height="100" alt="Imagem do Jogo"></td>
                 <td>
 
-                  <a href="./viewUser.php?id=<?= $game['id'] ?>" class="btn btn-secondary btn-sm">Visualizar</a>
-                  <a href="./editUser.php?id=<?= $game['id'] ?>" class="btn btn-success btn-sm">Editar</a>
+                  <a href="./viewUser.php?id=<?= $game[
+                      "id"
+                  ] ?>" class="btn btn-secondary btn-sm">Visualizar</a>
+                  <a href="./editUser.php?id=<?= $game[
+                      "id"
+                  ] ?>" class="btn btn-success btn-sm">Editar</a>
                   <form action="./php/cadcli.php" method="POST" class="d-inline">
-                    <button onclick="return confirm('Tem certeza que deseja excluir este usuário?');" type="submit" name="deleteUser" value="<?= $user['id'] ?>" class="btn btn-danger btn-sm">
+                    <button onclick="return confirm('Tem certeza que deseja excluir este usuário?');" type="submit" name="deleteUser" value="<?= $user[
+                        "id"
+                    ] ?>" class="btn btn-danger btn-sm">
                       Excluir
                     </button>
 
                   </form>
                 </td>
               </tr>
-              <?php
-                }
-              } else{
-                echo "<h5> Nenhum usuário encontrado </h5>";
+              <?php }
+              } else {
+                  echo "<h5> Nenhum usuário encontrado </h5>";
+                  echo mysqli_num_rows($result);
               }
               ?>
             </tbody>
-          </table>        
+          </table>
         </div>
-      </div>    
+      </div>
     </div>
   </div>
 </div>
-<?php
-}
-elseif ($role == 'professor') {
+<?php } elseif ($role == "professor") {
     // Usuário é professor, pode continuar
-?>
+    ?>
 
 
 
@@ -246,63 +265,69 @@ elseif ($role == 'professor') {
                 <th>Descrição</th>
                 <th>Link</th>
                 <th>Criador</th>
+                <th>Escola</th>
                 <th>Imagem</th>
                 <th>Ações</th>
               </tr>
             </thead>
             <tbody>
-          
-            
+
+
               <?php
-              $sql = "SELECT  games.*, users.name AS user_name
+              $sql = "SELECT  games.*, users.name AS user_name, schools.name AS school_name
               FROM games
-              INNER JOIN users ON games.user_id = users.id ";
+              INNER JOIN users ON games.user_id = users.id
+              INNER JOIN schools ON games.school_id = schools.id
+               WHERE games.school_id = $school_id";
               $result = mysqli_query($conn, $sql);
               if (mysqli_num_rows($result) > 0) {
-                foreach ($result as $game) {
-              ?>
-              
+                  foreach ($result as $game) { ?>
+
               <tr>
-                <td><?= $game['id'] ?></td>
-                <td><?= $game['name'] ?></td>
-                <td><?= $game['description'] ?></td>
-                <td><?= $game['link'] ?></td>
-                <td><?= $game['user_name'] ?></td>
-                <td><img src="./php/exibirImage.php?id=<?= $game['id'] ?>" width="100" height="100" alt="Imagem do Jogo"></td>
+                <td><?= $game["id"] ?></td>
+                <td><?= $game["name"] ?></td>
+                <td><?= $game["description"] ?></td>
+                <td><a href="<?= $game["link"] ?>"><?= $game["link"] ?></a></td>
+                <td><?= $game["user_name"] ?></td>
+                <td><?= $game["school_name"] ?></td>
+                <td><img src="./php/exibirImage.php?id=<?= $game[
+                    "id"
+                ] ?>" width="100" height="100" alt="Imagem do Jogo"></td>
                 <td>
 
-                  <a href="./viewUser.php?id=<?= $game['id'] ?>" class="btn btn-secondary btn-sm">Visualizar</a>
-                  <a href="./editUser.php?id=<?= $game['id'] ?>" class="btn btn-success btn-sm">Editar</a>
+                  <a href="./viewUser.php?id=<?= $game[
+                      "id"
+                  ] ?>" class="btn btn-secondary btn-sm">Visualizar</a>
+                  <a href="./editUser.php?id=<?= $game[
+                      "id"
+                  ] ?>" class="btn btn-success btn-sm">Editar</a>
                   <form action="./php/cadcli.php" method="POST" class="d-inline">
-                    <button onclick="return confirm('Tem certeza que deseja excluir este usuário?');" type="submit" name="deleteUser" value="<?= $user['id'] ?>" class="btn btn-danger btn-sm">
+                    <button onclick="return confirm('Tem certeza que deseja excluir este usuário?');" type="submit" name="deleteUser" value="<?= $user[
+                        "id"
+                    ] ?>" class="btn btn-danger btn-sm">
                       Excluir
                     </button>
 
                   </form>
                 </td>
               </tr>
-              <?php
-                }
-              } else{
-                echo "<h5> Nenhum usuário encontrado </h5>";
+              <?php }
+              } else {
+                  echo "<h5> Nenhum usuário encontrado </h5>";
               }
               ?>
             </tbody>
-          </table>        
+          </table>
         </div>
-      </div>    
+      </div>
     </div>
   </div>
 </div>
-<?php
-}
-?>
+<?php }?>
 <br>
 <br><br>
 
-<?php
-include_once("./php/footer.php");
-?>
+<?php include_once "./php/footer.php"; ?>
     <!-- End your project here-->
 
     <!-- MDB -->
