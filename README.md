@@ -1,4 +1,4 @@
-# 🎮 TCC EtecGames
+# 🎮 EtecGames
 
 ![RepoSize](https://img.shields.io/github/repo-size/4NUB1Ss2/TCC_etec_games?style=f)
 ![LastCommit](https://img.shields.io/github/last-commit/4NUB1Ss2/TCC_etec_games)
